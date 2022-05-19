@@ -1,4 +1,4 @@
-package com.kh.exam1;
+package com.kh.exam;
 
 import java.util.Scanner;
 
@@ -40,26 +40,33 @@ public class AccountRepository {
         Scanner sc = new Scanner(System.in);
         System.out.println("이름을 입력해주세요");
         String name = sc.nextLine();
-            for (int i = 0; i < accounts.length; i++) {
-                if (accounts[i] != null) {
-                    if (accounts[i].getName().equals(name)) {
-                        joinNumber--;
-                        accounts[i] = null;
-                        System.out.println("계좌를 삭제했습니다.");
-                        System.out.println("남은 계좌 수 = " + joinNumber);
-                    }
+        int isDeleteCount = 0;
+        for (int i = 0; i < accounts.length; i++) { //계좌 조회 후 삭제
+            if (accounts[i] != null) {
+                if (accounts[i].getName().equals(name)) {
+                    joinNumber--;
+                    accounts[i] = null;
+                    System.out.println("계좌를 삭제했습니다.");
+                    System.out.println("남은 계좌 수 = " + joinNumber);
                 }
+            } else {
+                isDeleteCount ++;
             }
+        }
+        if (isDeleteCount == REPO_MAX) {
+            System.out.println("계좌를 찾을 수 없습니다");
+        }
     }
+
     @Override
     public String toString() {  //계좌현황
         String str = "";
-            for (Account account : accounts) {
-                if (account != null) {
-                    str += "계좌ID [" + account.getAccountId() + "] >>" + account.toString() + "\n";
-                }
+        for (Account account : accounts) {
+            if (account != null) {
+                str += account.toString() + "\n";
             }
-            if(joinNumber == 0) return "계좌가 없습니다.";
+        }
+        if(joinNumber == 0) return "계좌가 없습니다.";
         return str;
     }
     public int getJoinNumber() {
