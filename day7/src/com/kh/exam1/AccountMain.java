@@ -1,4 +1,4 @@
-package com.kh.exam1;
+package com.kh.exam;
 
 import java.util.Scanner;
 
@@ -28,11 +28,11 @@ public class AccountMain {
                     break;
                 case "3":  //출금
                     if (accountSet == null) System.out.println(EXIT);
-                    else   accountSet.withdraw();
+                    else accountSet.withdraw();
                     break;
                 case "4":  //잔액조회
-                    if (accountSet != null)   System.out.println(accountSet.toString());
-                    else System.out.println(EXIT);
+                    if (accountSet == null) System.out.println(EXIT);
+                    else System.out.println(accountSet.toString());
                     break;
                 case "5":  //계좌폐지
                     accountRepository.deleteAccount();
