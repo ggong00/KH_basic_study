@@ -29,3 +29,20 @@
 		
 		2. 컬렉션(검색, 정렬) 생성시 생성자 매개값을 java.util.Comparator 구현체 전달하기.
 			=> 컬렉션 생성시 비교연산자를 주입하여 정렬기준을 정의하는 방법. compare()
+			=> 사용자 정의 클래스에서 구현된 compareTo보다 우선순위가 높다.
+			
+int Objects.hashCode(Object o) : 현재 객체의 해시코드 생성
+int Objects.hash(Objecct... values) : 매개값에 저장된 배열의 해시코드 생성
+int Objects.compare(T a , T b, Comparator<T> c) : 두 객체 a와 b를 Comparator를 사용해서비교
+			
+int Object.hashCode() : 현객체의 해시코드값을 리턴
+boolean Object.equals(Object o) : object가 가리키는 객체와 현재 객체를 비교하여 같으면 true리턴
+String Object.toString() : 현 객체에 문자열 표현을 리턴
+
+// Cimparable를 구현한 구현클래스를 사용자
+	1. 이름있는 구현 클래스를 생성해서 컬렉션 생성시 전달
+	2. 아룸없는 구현 클래스를 생성해서 컬렉션에 전달
+
+1. 사전순 내림차순
+2. 문자열 길이 오름차순
+3. 문자열 길이 내림차순
