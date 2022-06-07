@@ -1,1 +1,0 @@
-REVOKE SELECT ON Book FROM mdguest;
