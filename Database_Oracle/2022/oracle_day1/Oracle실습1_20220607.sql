@@ -1,53 +1,53 @@
-/* BOOK ¸ðµçÄÃ·³ */
+/* BOOK ëª¨ë“ ì»¬ëŸ¼ */
 SELECT * FROM ORDERS;
 
-/* BOOK Æ¯Á¤ÄÃ¸²1 */
+/* BOOK íŠ¹ì •ì»¬ë¦¼1 */
 SELECT BOOKNAME FROM BOOK;
 
-/* BOOK Æ¯Á¤ÄÃ·³2 */
+/* BOOK íŠ¹ì •ì»¬ëŸ¼2 */
 SELECT BOOKNAME,PRICE FROM BOOK;
 
-/* CUSTOMER ¸ðµçÄÃ·³ */
+/* CUSTOMER ëª¨ë“ ì»¬ëŸ¼ */
 SELECT * FROM CUSTOMER;
 
-/* ORDERS ¸ðµçÄÃ·³ */
+/* ORDERS ëª¨ë“ ì»¬ëŸ¼ */
 SELECT * FROM ORDERS;
 
-/* BOOK µµ¼­ ÀÌ¸§¿¡ Æ¯Á¤ ÆÐÅÏÀÇ ¹®ÀÚ¸¦ Æ÷ÇÔÇÑ ·¹ÄÚµå °Ë»ö */
-SELECT * FROM BOOK WHERE BOOKNAME LIKE '%Ãà±¸%';
-SELECT * FROM BOOK WHERE BOOKNAME LIKE '%¿ª»ç';
-SELECT * FROM BOOK WHERE BOOKNAME LIKE '°ñÇÁ%';
+/* BOOK ë„ì„œ ì´ë¦„ì— íŠ¹ì • íŒ¨í„´ì˜ ë¬¸ìžë¥¼ í¬í•¨í•œ ë ˆì½”ë“œ ê²€ìƒ‰ */
+SELECT * FROM BOOK WHERE BOOKNAME LIKE '%ì¶•êµ¬%';
+SELECT * FROM BOOK WHERE BOOKNAME LIKE '%ì—­ì‚¬';
+SELECT * FROM BOOK WHERE BOOKNAME LIKE 'ê³¨í”„%';
 
-/* BOOK Æ¯Á¤ÃâÆÇ»ç¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå °Ë»ö */
-SELECT * FROM BOOK WHERE PUBLISHER = '±Â½ºÆ÷Ã÷';
+/* BOOK íŠ¹ì •ì¶œíŒì‚¬ì— í•´ë‹¹í•˜ëŠ” ë ˆì½”ë“œ ê²€ìƒ‰ */
+SELECT * FROM BOOK WHERE PUBLISHER = 'êµ¿ìŠ¤í¬ì¸ ';
 
-/* BOOK µµ¼­ °¡°ÝÀÌ ¾ó¸¶ ÀÌ»ó, ÀÌÇÏ µî Á¶°Ç °Ë»ö */
+/* BOOK ë„ì„œ ê°€ê²©ì´ ì–¼ë§ˆ ì´ìƒ, ì´í•˜ ë“± ì¡°ê±´ ê²€ìƒ‰ */
 SELECT * FROM BOOK WHERE PRICE = 7000;
 SELECT * FROM BOOK WHERE PRICE > 7000;
 SELECT * FROM BOOK WHERE PRICE < 7000;
 SELECT * FROM BOOK WHERE PRICE != 7000;
 
-/* BOOK µµ¼­ °¡°Ý ¹üÀ§ Á¶È¸ */
+/* BOOK ë„ì„œ ê°€ê²© ë²”ìœ„ ì¡°íšŒ */
 SELECT * FROM BOOK WHERE PRICE >= 7000 AND PRICE <= 10000;
 SELECT * FROM BOOK WHERE PRICE BETWEEN 7000 AND 10000;
 SELECT * FROM BOOK WHERE PRICE = 7000 OR PRICE = 8000;
 SELECT * FROM BOOK WHERE NOT(PRICE = 7000 OR PRICE = 8000);
 SELECT * FROM BOOK WHERE PRICE != 7000 AND PRICE != 8000;
 
-/* SUM ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© Æ¯Á¤ ÄÃ·³ÀÇ °ª °è»ê */
+/* SUM í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ íŠ¹ì • ì»¬ëŸ¼ì˜ ê°’ ê³„ì‚° */
 SELECT SUM(PRICE) FROM BOOK;
-SELECT SUM(PRICE) FROM BOOK WHERE PUBLISHER = '±Â½ºÆ÷Ã÷';
+SELECT SUM(PRICE) FROM BOOK WHERE PUBLISHER = 'êµ¿ìŠ¤í¬ì¸ ';
 
-/* AS , ¶ç¾î¾²±â¸¦ ÀÌ¿ëÇÑ º°Äª */
-SELECT NAME "ÀÌ ¸§", PHONE AS "ÀüÈ­¹øÈ£" 
+/* AS , ë„ì–´ì“°ê¸°ë¥¼ ì´ìš©í•œ ë³„ì¹­ */
+SELECT NAME "ì´ ë¦„", PHONE AS "ì „í™”ë²ˆí˜¸" 
 FROM CUSTOMER 
-WHERE NAME = '±è¿¬¾Æ';
+WHERE NAME = 'ê¹€ì—°ì•„';
 
-/* SELECT ÄÃ·³¸í À§Ä¡¿¡ µû¸¥ °á°ú°ª */    
+/* SELECT ì»¬ëŸ¼ëª… ìœ„ì¹˜ì— ë”°ë¥¸ ê²°ê³¼ê°’ */    
 SELECT BOOKNAME, PRICE FROM BOOK;
 SELECT PRICE , BOOKNAME FROM BOOK;
 
-/* SELECT ½Ç½À  */
+/* SELECT ì‹¤ìŠµ  */
 SELECT BOOKID, BOOKNAME, PUBLISHER, PRICE 
   FROM BOOK;
     
@@ -65,7 +65,7 @@ SELECT *
 
 SELECT * 
   FROM BOOK 
-  WHERE PUBLISHER NOT IN ('±Â½ºÆ÷Ã÷','´ëÇÑ¹Ìµð¾î');
+  WHERE PUBLISHER NOT IN ('êµ¿ìŠ¤í¬ì¸ ','ëŒ€í•œë¯¸ë””ì–´');
 
 SELECT NAME  
   FROM CUSTOMER
@@ -85,27 +85,27 @@ SELECT *
   
 SELECT * 
   FROM BOOK
-  WHERE BOOKNAME LIKE '_±¸%';
+  WHERE BOOKNAME LIKE '_êµ¬%';
   
 SELECT * 
   FROM BOOK
-  WHERE BOOKNAME LIKE '°ñÇÁ' || ' ¹ÙÀÌºí';
+  WHERE BOOKNAME LIKE 'ê³¨í”„' || ' ë°”ì´ë¸”';
   
 SELECT *
   from book
-  where bookname like '_____¾ï';
+  where bookname like '_____ì–µ';
 
 select *
   from book
-  where bookname like '__ÀÇ%';
+  where bookname like '__ì˜%';
   
 select *
   from book
-  where BOOKNAME like '%Ãà±¸%' and price >= 20000;
+  where BOOKNAME like '%ì¶•êµ¬%' and price >= 20000;
 
 select *
   from book
-  where PUBLISHER = '±Â½ºÆ÷Ã÷' or PUBLISHER = '´ëÇÑ¹Ìµð¾î';
+  where PUBLISHER = 'êµ¿ìŠ¤í¬ì¸ ' or PUBLISHER = 'ëŒ€í•œë¯¸ë””ì–´';
   
 SELECT *
   FROM BOOK
@@ -119,13 +119,13 @@ SELECT *
   FROM BOOK
   ORDER BY PRICE DESC, BOOKNAME ASC;
   
-SELECT SUM(saleprice) "ÃÑ¸ÅÃâ"
+SELECT SUM(saleprice) "ì´ë§¤ì¶œ"
   FROM orders;
   
 SELECT SUM(saleprice) 
   FROM orders;
   
-select SUM(saleprice) "ÃÑ¸ÅÃâ"
+select SUM(saleprice) "ì´ë§¤ì¶œ"
   FROM orders
   where CUSTID = 2;
   
@@ -141,14 +141,14 @@ SELECT COUNT(*)
   
 select * from orders;
   
-select custid, count(*) µµ¼­¼ö·®, sum(saleprice) ÃÑ¾×
+select custid, count(*) ë„ì„œìˆ˜ëŸ‰, sum(saleprice) ì´ì•¡
   from orders 
-  where saleprice > 10000 --¼Ó¼º(ÄÃ·³) ÇÊÅÍ¸µ
-  group by custid --group by¿¡ ³ª¿­ÇÑ ¼Ó¼º¸¸ Áý°èÇÔ¼ö¿Í °°ÀÌ selectÀý¿¡ »ç¿ë°¡´É
-  having count(*) >= 2  --Áý°èÇÔ¼ö·Î ÇÊÅÍ¸µ
-  order by custid desc; --Á¤·ÄÀº ¸¶Áö¸¶
+  where saleprice > 10000 --ì†ì„±(ì»¬ëŸ¼) í•„í„°ë§
+  group by custid --group byì— ë‚˜ì—´í•œ ì†ì„±ë§Œ ì§‘ê³„í•¨ìˆ˜ì™€ ê°™ì´ selectì ˆì— ì‚¬ìš©ê°€ëŠ¥
+  having count(*) >= 2  --ì§‘ê³„í•¨ìˆ˜ë¡œ í•„í„°ë§
+  order by custid desc; --ì •ë ¬ì€ ë§ˆì§€ë§ˆ
     
-select custid , count(*) µµ¼­¼ö·® , sum(saleprice) ÃÑ¾×
+select custid , count(*) ë„ì„œìˆ˜ëŸ‰ , sum(saleprice) ì´ì•¡
   from orders
   where saleprice >= 8000
   group by custid
