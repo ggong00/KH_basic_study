@@ -9,9 +9,11 @@ select ename, deptno
   where empno = '7788';
 
 --4. EMP 테이블에서 입사일이 February 20, 1981과 May 1, 19981 사이에 입사한 사원의 이름,업무,입사일을 출력하는 SELECT 문장을 작성하시오. 단 입사일 순으로 출력하시오.
-select ename
+select ename, job, hiredate
   from emp
-  where hiredate between 1981;
+  where hiredate between '19810220' and '19810501'
+  order by hiredate;
+  
 --5. EMP 테이블에서 부서번호가 10,20인 사원의 모든 정보를 출력하는 SELECT 문장을 작성하시오. 단 이름순으로 정렬하여라.
 select *
   from emp 
