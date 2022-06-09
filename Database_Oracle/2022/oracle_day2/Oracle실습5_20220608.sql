@@ -101,4 +101,46 @@ select c.name
         and c.name != '박지성' and b.publisher in (select publisher from customer c2, orders o2, book b2
                                                   where c2.custid = o2.custid and o2.bookid = b2.bookid
                                                     and c2.name = '박지성'); 
+                                                    
+-- (3.2) 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름                                                     
+select name
+  from customer
+  where name in(select c.name
+  from book b , customer c, orders o
+  where b.bookid = o.bookid and c.custid = o.custid
+  group by c.name having count(distinct b.publisher) >=2);
+
+-- (3.3) 전체 고객의 30% 이상이 구매한 도서
+select *
+  from book
+  where bookname in (select b.bookname
+                      from orders o , book b
+                      where o.bookid = b.bookid
+                      group by b.bookname
+                      having count(*) >= (select count(*)*0.3
+                                           from customer));
+
+-- (5) exists을 사용하고 결과 값 확인하기
+select *
+  from customer c1
+  where not exists (select * from orders c2
+                    where c1.custid = c2.custid);
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
