@@ -3,7 +3,7 @@ drop table employee;
 drop table project;
 drop table department;
 
---ºÎ¼­ Å×ÀÌºí
+--ë¶€ì„œ í…Œì´ë¸”
 create table department (
   deptno    number(2),
   deptname  varchar2(20),
@@ -13,7 +13,7 @@ alter table department add constraint department_deptno_pk
   primary key(deptno);
 alter table department modify deptname constraint department_deptname_nn not null;
 
---»ç¿ø Å×ÀÌºí
+--ì‚¬ì› í…Œì´ë¸”
 create table employee (
   empno     number(4),
   name      varchar2(20),
@@ -29,9 +29,9 @@ alter table employee add constraint employee_empno_pk
 alter table employee add constraint employee_deptno_fk
   foreign key(deptno) references department(deptno);
 alter table employee modify name constraint employee_name_nn not null;  
-alter table employee add constraint employee_sex_ck check(sex in('³²','¿©'));
+alter table employee add constraint employee_sex_ck check(sex in('ë‚¨','ì—¬'));
 
--- ÇÁ·ÎÁ§Æ® Å×ÀÌºí
+-- í”„ë¡œì íŠ¸ í…Œì´ë¸”
 create table project (
   projno    number(3),
   projname  varchar2(20),
@@ -43,7 +43,7 @@ alter table project add constraint project_deptno_fk
   foreign key(deptno) references department(deptno);  
 alter table project modify projname constraint project_projname_nn not null;  
 
---  ¾÷¹« Å×ÀÌºí
+--  ì—…ë¬´ í…Œì´ë¸”
 create table works (
   empno          number(4),
   projno         number(3),
@@ -55,40 +55,40 @@ alter table works add constraint works_projno_fk
   foreign key(projno) references project(projno);  
 alter table works add constraint works_hoursworked_ck check(hoursworked > 0);
 
--- ºÎ¼­ µ¥ÀÌÅÍ ÀÔ·Â
-insert into department values (10,'Àü»êÆÀ',1001);
-insert into department values (20,'È¸°èÆÀ',1004);
-insert into department values (30,'¿µ¾÷ÆÀ',1007);
-insert into department values (40,'ÃÑ¹«ÆÀ',1011);
-insert into department values (50,'ÀÎ»çÆÀ',1013);
+-- ë¶€ì„œ ë°ì´í„° ì…ë ¥
+insert into department values (10,'ì „ì‚°íŒ€',1001);
+insert into department values (20,'íšŒê³„íŒ€',1004);
+insert into department values (30,'ì˜ì—…íŒ€',1007);
+insert into department values (40,'ì´ë¬´íŒ€',1011);
+insert into department values (50,'ì¸ì‚¬íŒ€',1013);
 
 select * from department;
 
--- »ç¿ø µ¥ÀÌÅÍ ÀÔ·Â
-insert into employee values (1001,'È«±æµ¿1','010-111-1001','¿ï»ê1','³²','ÆÀÀå',7000000,10);
-insert into employee values (1002,'È«±æµ¿2','010-111-1002','¿ï»ê2','³²','ÆÀ¿ø1',4000000,10);
-insert into employee values (1003,'È«±æµ¿3','010-111-1003','¿ï»ê3','³²','ÆÀ¿ø2',3000000,10);
-insert into employee values (1004,'È«±æµ¿4','010-111-1004','ºÎ»ê1','¿©','ÆÀÀå',6000000,20);
-insert into employee values (1005,'È«±æµ¿5','010-111-1005','ºÎ»ê2','³²','ÆÀ¿ø1',3500000,20);
-insert into employee values (1006,'È«±æµ¿6','010-111-1006','ºÎ»ê3','³²','ÆÀ¿ø2',2500000,20);
-insert into employee values (1007,'È«±æµ¿7','010-111-1007','¼­¿ï1','³²','ÆÀÀå',5000000,30);
-insert into employee values (1008,'È«±æµ¿8','010-111-1008','¼­¿ï2','³²','ÆÀ¿ø1',4000000,30);
-insert into employee values (1009,'È«±æµ¿9','010-111-1009','¼­¿ï3','³²','ÆÀ¿ø2',3000000,30);
+-- ì‚¬ì› ë°ì´í„° ì…ë ¥
+insert into employee values (1001,'í™ê¸¸ë™1','010-111-1001','ìš¸ì‚°1','ë‚¨','íŒ€ì¥',7000000,10);
+insert into employee values (1002,'í™ê¸¸ë™2','010-111-1002','ìš¸ì‚°2','ë‚¨','íŒ€ì›1',4000000,10);
+insert into employee values (1003,'í™ê¸¸ë™3','010-111-1003','ìš¸ì‚°3','ë‚¨','íŒ€ì›2',3000000,10);
+insert into employee values (1004,'í™ê¸¸ë™4','010-111-1004','ë¶€ì‚°1','ì—¬','íŒ€ì¥',6000000,20);
+insert into employee values (1005,'í™ê¸¸ë™5','010-111-1005','ë¶€ì‚°2','ë‚¨','íŒ€ì›1',3500000,20);
+insert into employee values (1006,'í™ê¸¸ë™6','010-111-1006','ë¶€ì‚°3','ë‚¨','íŒ€ì›2',2500000,20);
+insert into employee values (1007,'í™ê¸¸ë™7','010-111-1007','ì„œìš¸1','ë‚¨','íŒ€ì¥',5000000,30);
+insert into employee values (1008,'í™ê¸¸ë™8','010-111-1008','ì„œìš¸2','ë‚¨','íŒ€ì›1',4000000,30);
+insert into employee values (1009,'í™ê¸¸ë™9','010-111-1009','ì„œìš¸3','ë‚¨','íŒ€ì›2',3000000,30);
 insert into employee (empno,name,address,sex,position,salary,deptno) 
-  values (1010,'È«±æµ¿10','¼­¿ï4','³²','ÆÀ¿ø3',2000000,30);  
-insert into employee values (1011,'È«±æµ¿11','010-111-1011','´ë±¸1','¿©','ÆÀÀå',5500000,40);
-insert into employee values (1012,'È«±æµ¿12','010-111-1012','´ë±¸2','³²','ÆÀ¿ø1',2000000,40);
-insert into employee values (1013,'È«±æµ¿13','010-111-1013','Á¦ÁÖ1','³²','ÆÀÀå',6500000,50);
-insert into employee values (1014,'È«±æµ¿14','010-111-1014','Á¦ÁÖ2','³²','ÆÀ¿ø1',3500000,50);
+  values (1010,'í™ê¸¸ë™10','ì„œìš¸4','ë‚¨','íŒ€ì›3',2000000,30);  
+insert into employee values (1011,'í™ê¸¸ë™11','010-111-1011','ëŒ€êµ¬1','ì—¬','íŒ€ì¥',5500000,40);
+insert into employee values (1012,'í™ê¸¸ë™12','010-111-1012','ëŒ€êµ¬2','ë‚¨','íŒ€ì›1',2000000,40);
+insert into employee values (1013,'í™ê¸¸ë™13','010-111-1013','ì œì£¼1','ë‚¨','íŒ€ì¥',6500000,50);
+insert into employee values (1014,'í™ê¸¸ë™14','010-111-1014','ì œì£¼2','ë‚¨','íŒ€ì›1',3500000,50);
 
 select * from employee;
--- ÇÁ·ÎÁ§Æ® Å×ÀÌºí µ¥ÀÌÅÍ ÀÔ·Â
-insert into project values (101,'ºòµ¥ÀÌÅÍ±¸Ãà',10);
+-- í”„ë¡œì íŠ¸ í…Œì´ë¸” ë°ì´í„° ì…ë ¥
+insert into project values (101,'ë¹…ë°ì´í„°êµ¬ì¶•',10);
 insert into project values (102,'IFRS',20);
-insert into project values (103,'¸¶ÄÉÆÃ',30);
+insert into project values (103,'ë§ˆì¼€íŒ…',30);
 
 select * from project;
---¾÷¹« Å×ÀÌºí µ¥ÀÌÅÍ ÀÔ·Â
+--ì—…ë¬´ í…Œì´ë¸” ë°ì´í„° ì…ë ¥
 insert into works values (1001,101,800);
 insert into works values (1002,101,400);
 insert into works values (1003,101,300);
@@ -119,9 +119,9 @@ select * from department;
 select * from project;
 select * from works;
 -- 3
-select name ÀÌ¸§, phoneno ¿¬¶ôÃ³, address ÁÖ¼Ò
+select name ì´ë¦„, phoneno ì—°ë½ì²˜, address ì£¼ì†Œ
   from employee
-  where sex = '¿©';
+  where sex = 'ì—¬';
 
 -- 4
 update employee e set salary = salary * 1.1
@@ -132,29 +132,29 @@ update employee e set salary = salary * 1.1
 select * from employee;        
 
 -- 5
-select substr(name,1,1) || '**' ¼º, count(*) ÀÎ¿ø¼ö
+select substr(name,1,1) || '**' ì„±, count(*) ì¸ì›ìˆ˜
   from employee
   group by substr(name,1,1);
   
 -- 6
-select name ÀÌ¸§ ,nvl2(phoneno,substr(phoneno,1,8)||'**'||substr(phoneno,11,12),'¿¬¶ôÃ³¾øÀ½') ¿¬¶ôÃ³ ,address ÁÖ¼Ò
+select name ì´ë¦„ ,nvl2(phoneno,substr(phoneno,1,8)||'**'||substr(phoneno,11,12),'ì—°ë½ì²˜ì—†ìŒ') ì—°ë½ì²˜ ,address ì£¼ì†Œ
   from employee
   where deptno = (select deptno
                   from department
-                  where deptname = '¿µ¾÷ÆÀ');
+                  where deptname = 'ì˜ì—…íŒ€');
                
 -- 7
-select count(*) »ç¿ø¼ö
+select count(*) ì‚¬ì›ìˆ˜
   from employee
   where deptno =(
       select d.deptno
       from department d,employee e
       where e.deptno = d.deptno
         and d.manager = e.empno
-        and e.name = 'È«±æµ¿7');
+        and e.name = 'í™ê¸¸ë™7');
                   
 -- 8
-select name ÀÌ¸§
+select name ì´ë¦„
   from employee
   where empno not in(
       select e.empno
@@ -162,21 +162,21 @@ select name ÀÌ¸§
       where w.empno = e.empno);
 
 -- 9
-select rownum ¼øÀ§,a.* 
+select rownum ìˆœìœ„,a.* 
   from(select *
     from employee
     order by salary desc) a
   where rownum <= 3;
   
 -- 10
-select d.deptname ºÎ¼­ÀÌ¸§, e.name ÀÌ¸§, w.hoursworked ±Ù¹«½Ã°£
+select d.deptname ë¶€ì„œì´ë¦„, e.name ì´ë¦„, w.hoursworked ê·¼ë¬´ì‹œê°„
   from department d, employee e, works w
   where e.deptno = d.deptno
     and w.empno = e.empno
   order by d.deptname, e.name;
 
 -- 11
-select p.projno "ÇÁ·ÎÁ§Æ® ¹øÈ£", p.projname "ÇÁ·ÎÁ§Æ® ¸í", p2.cnt "»ç¿øÀÇ ¼ö" 
+select p.projno "í”„ë¡œì íŠ¸ ë²ˆí˜¸", p.projname "í”„ë¡œì íŠ¸ ëª…", p2.cnt "ì‚¬ì›ì˜ ìˆ˜" 
   from project p , 
   (select projno, count(*) cnt
     from works
@@ -194,7 +194,7 @@ select name
       having count(*) >= 3);
 
 -- 13
-select e.name »ç¿ø¸í, e2.sum ±Ù¹«½Ã°£
+select e.name ì‚¬ì›ëª…, e2.sum ê·¼ë¬´ì‹œê°„
   from employee e, (select w.empno ,sum(w.hoursworked) sum
                    from employee e , works w
                    where w.empno = e.empno
@@ -208,7 +208,7 @@ select e.name »ç¿ø¸í, e2.sum ±Ù¹«½Ã°£
 
 -- 14
 create view vw_ename_pojname_hoursworked as
-select e.name »ç¿ø¸í, p.projname ÇÁ·ÎÁ§Æ®¸í, w.hoursworked ±Ù¹«½Ã°£
+select e.name ì‚¬ì›ëª…, p.projname í”„ë¡œì íŠ¸ëª…, w.hoursworked ê·¼ë¬´ì‹œê°„
   from employee e, project p, works w
   where e.empno = w.empno
     and w.projno = p.projno;    
@@ -217,13 +217,13 @@ select *
   from vw_ename_pojname_hoursworked;
 
 -- 15
-select e.name »ç¿ø¸í
+select e.name ì‚¬ì›ëª…
   from employee e
   where exists(select *
                 from works w, project p
                 where w.projno = p.projno
                   and e.deptno = p.deptno
-                  and p.projname = 'ºòµ¥ÀÌÅÍ±¸Ãà');
+                  and p.projname = 'ë¹…ë°ì´í„°êµ¬ì¶•');
 
 -- 16
 create index ix_employee2 on employee(name,phoneno);
@@ -233,14 +233,14 @@ select *
   where table_name = 'EMPLOYEE';
 
 -- 17
-select e.name ÀÌ¸§, e.salary ¿ù±Ş
+select e.name ì´ë¦„, e.salary ì›”ê¸‰
   from employee e
   where e.salary > (select avg(e2.salary)
                    from employee e2
                    where e.deptno = e2.deptno);
                    
 -- 18
-select e.name »ç¿ø¸í, e.salary ±Ş¿©, e.deptno ºÎ¼­¹øÈ£
+select e.name ì‚¬ì›ëª…, e.salary ê¸‰ì—¬, e.deptno ë¶€ì„œë²ˆí˜¸
 from employee e
   where e.empno in(select e2.empno
                    from (select *
