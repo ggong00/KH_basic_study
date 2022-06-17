@@ -1,7 +1,10 @@
 drop table works;
+alter table department drop constraint department_manager_fk;
 drop table employee;
 drop table project;
 drop table department;
+
+
 
 --부서 테이블
 create table department (
@@ -31,6 +34,8 @@ alter table employee add constraint employee_deptno_fk
 alter table employee modify name constraint employee_name_nn not null;  
 alter table employee add constraint employee_sex_ck check(sex in('남','여'));
 
+alter table department add constraint department_manager_fk
+  foreign key(manager) references employee(empno);
 -- 프로젝트 테이블
 create table project (
   projno    number(3),
@@ -52,18 +57,20 @@ create table works (
 alter table works add constraint works_empno_projno_pk 
   primary key(empno,projno);
 alter table works add constraint works_projno_fk
-  foreign key(projno) references project(projno);  
+  foreign key(projno) references project(projno);
+alter table works add constraint works_empno_fk
+  foreign key(empno) references employee(empno);    
 alter table works add constraint works_hoursworked_ck check(hoursworked > 0);
 
 -- 부서 데이터 입력
-insert into department values (10,'전산팀',1001);
-insert into department values (20,'회계팀',1004);
-insert into department values (30,'영업팀',1007);
-insert into department values (40,'총무팀',1011);
-insert into department values (50,'인사팀',1013);
+insert into department(deptno,deptname) values (10,'전산팀');
+insert into department(deptno,deptname) values (20,'회계팀');
+insert into department(deptno,deptname) values (30,'영업팀');
+insert into department(deptno,deptname) values (40,'총무팀');
+insert into department(deptno,deptname) values (50,'인사팀');
 
 select * from department;
-
+ 
 -- 사원 데이터 입력
 insert into employee values (1001,'홍길동1','010-111-1001','울산1','남','팀장',7000000,10);
 insert into employee values (1002,'홍길동2','010-111-1002','울산2','남','팀원1',4000000,10);
@@ -82,6 +89,12 @@ insert into employee values (1013,'홍길동13','010-111-1013','제주1','남','
 insert into employee values (1014,'홍길동14','010-111-1014','제주2','남','팀원1',3500000,50);
 
 select * from employee;
+
+-- 부서 테이블에 팀장 입력
+update department d set manager = (select e.empno from employee e
+                                  where d.deptno = e.deptno
+                                    and e.position = '팀장');
+
 -- 프로젝트 테이블 데이터 입력
 insert into project values (101,'빅데이터구축',10);
 insert into project values (102,'IFRS',20);
@@ -112,6 +125,17 @@ select constraint_name, constraint_type
   from user_constraints
   where table_name = 'EMPLOYEE';
   
+select constraint_name, constraint_type
+  from user_constraints
+  where table_name = 'DEPARTMENT';
+  
+select constraint_name, constraint_type
+  from user_constraints
+  where table_name = 'PROJECT';
+  
+select constraint_name, constraint_type
+  from user_constraints
+  where table_name = 'WORKS';  
   
 -- 2
 select * from employee;
@@ -142,6 +166,12 @@ select name 이름 ,nvl2(phoneno,substr(phoneno,1,8)||'**'||substr(phoneno,11,12
   where deptno = (select deptno
                   from department
                   where deptname = '영업팀');
+                  
+select name"이름", nvl2(phoneno, concat(substr(phoneno,0,8),replace (substr(phoneno, 9, 4), '10', '**' )) ,
+                        '연락처 없음')"연락처", address"주소" 
+     from employee t1, department t2
+    where t1.deptno = t2.deptno
+      and t2.deptname = '영업팀';                  
                
 -- 7
 select count(*) 사원수
@@ -185,7 +215,7 @@ select p.projno "프로젝트 번호", p.projname "프로젝트 명", p2.cnt "�
   where p.projno = p2.projno;
   
 -- 12
-select name
+select name 이름
   from employee
   where deptno in(
     select deptno
@@ -196,17 +226,20 @@ select name
 -- 13
 select e.name 사원명, e2.sum 근무시간
   from employee e, (select w.empno ,sum(w.hoursworked) sum
-                   from employee e , works w
-                   where w.empno = e.empno
+                   from works w
                    group by w.empno
-                    having sum(w.hoursworked) = (select max(hoursworked)
-                                                 from works) 
-                    or sum(w.hoursworked) = (select min(hoursworked)
-                                             from works)) e2
+                    having sum(w.hoursworked) in (select max(sum(hoursworked))
+                                                 from works
+                                                 group by empno) 
+                    or sum(w.hoursworked) in (select min(sum(hoursworked))
+                                             from works
+                                             group by empno)) e2
   where e.empno = e2.empno
   order by e2.sum desc;
 
 -- 14
+drop view vw_ename_pojname_hoursworked;
+
 create view vw_ename_pojname_hoursworked as
 select e.name 사원명, p.projname 프로젝트명, w.hoursworked 근무시간
   from employee e, project p, works w
@@ -226,6 +259,7 @@ select e.name 사원명
                   and p.projname = '빅데이터구축');
 
 -- 16
+drop index ix_employee2;
 create index ix_employee2 on employee(name,phoneno);
 
 select *
@@ -233,7 +267,7 @@ select *
   where table_name = 'EMPLOYEE';
 
 -- 17
-select e.name 이름, e.salary 월급
+select e.deptno 부서명,e.name 이름, e.salary 월급
   from employee e
   where e.salary > (select avg(e2.salary)
                    from employee e2
