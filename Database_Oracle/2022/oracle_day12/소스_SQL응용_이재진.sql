@@ -1,22 +1,23 @@
 -- 1
+set serveroutput on;
+
 create or replace procedure test_1
 as
-  cursor c1 is select name, address, nvl(phone,'¿¬¶ôÃ³¾øÀ½') ph
+  cursor c1 is select name, address, nvl(phone,'ì—°ë½ì²˜ì—†ìŒ') ph
                 from customer
-                where address like '%´ëÇÑ¹Î±¹%';  
+                where address like '%ëŒ€í•œë¯¼êµ­%';  
 begin
   for val in c1 loop
-    dbms_output.put_line('ÀÌ¸§ : ' || rpad(val.name,10) ||
-                          ' ÁÖ¼Ò : ' || rpad(val.address,20) ||
-                          ' ¿¬¶ôÃ³ : ' || rpad(val.ph,20));
+    dbms_output.put_line('ì´ë¦„ : ' || rpad(val.name,10) ||
+                          ' ì£¼ì†Œ : ' || rpad(val.address,20) ||
+                          ' ì—°ë½ì²˜ : ' || rpad(val.ph,20));
   end loop;
   
   exception when others then 
-   dbms_output.put_line('¿¹¿Ü¹ß»ı : ' || sqlerrm(sqlcode));  
+   dbms_output.put_line('ì˜ˆì™¸ë°œìƒ : ' || sqlerrm(sqlcode));  
                             
 end;
 
-set serveroutput on;
 exec test_1;
 
 -- 2
@@ -42,12 +43,12 @@ begin
   end if;
   
   exception when others then 
-   dbms_output.put_line('¿¹¿Ü¹ß»ı : ' || sqlerrm(sqlcode));  
+   dbms_output.put_line('ì˜ˆì™¸ë°œìƒ : ' || sqlerrm(sqlcode));  
 end;
 
 select * from book;
-exec test_2(11,'µ¥ÀÌÅÍº£ÀÌ½º','´ëÇÑ¹Ìµğ¾î',25000);
-exec test_2(12,'µ¥ÀÌÅÍº£ÀÌ½º','´ëÇÑ¹Ìµğ¾î',30000);
+exec test_2(11,'ë°ì´í„°ë² ì´ìŠ¤','ëŒ€í•œë¯¸ë””ì–´',25000);
+exec test_2(12,'ë°ì´í„°ë² ì´ìŠ¤','ëŒ€í•œë¯¸ë””ì–´',30000);
 
 -- 3
 create or replace function test_3 (
@@ -64,16 +65,16 @@ begin
       and c.custid = p_custid; 
 
   if lv_sumprice >= 30000 then
-    lv_grade := '¿ì¼ö';  
+    lv_grade := 'ìš°ìˆ˜';  
   else 
-    lv_grade := 'ÀÏ¹İ';
+    lv_grade := 'ì¼ë°˜';
 
   end if;
   
   return lv_grade;
   
   exception when others then 
-    dbms_output.put_line('¿¹¿Ü¹ß»ı : ' || sqlerrm(sqlcode));    
+    dbms_output.put_line('ì˜ˆì™¸ë°œìƒ : ' || sqlerrm(sqlcode));    
 end;
 
 var test_v varchar2(20)
@@ -81,7 +82,7 @@ exec :test_v := test_3(1);
 print test_v
 
 -- 4
-select name ÀÌ¸§ ,test_3(custid) µî±Ş
+select name ì´ë¦„ ,test_3(custid) ë“±ê¸‰
   from customer;
 
 -- 5
@@ -104,14 +105,14 @@ begin
     group by c.custid,c.name;
 
   for idx in 1..lv_cusomers.count loop
-    dbms_output.put_line('°í°´¹øÈ£ : ' || lv_cusomers(idx).custid || 
-                         ' ÀÌ¸§ : ' || lv_cusomers(idx).name ||
-                         ' ÁÖ¹®È½¼ö : ' || lv_cusomers(idx).count ||
-                         ' ÃÑ ÁÖ¹®ÇÕ°è : ' || lv_cusomers(idx).sum_price);
+    dbms_output.put_line('ê³ ê°ë²ˆí˜¸ : ' || lv_cusomers(idx).custid || 
+                         ' ì´ë¦„ : ' || lv_cusomers(idx).name ||
+                         ' ì£¼ë¬¸íšŸìˆ˜ : ' || lv_cusomers(idx).count ||
+                         ' ì´ ì£¼ë¬¸í•©ê³„ : ' || lv_cusomers(idx).sum_price);
   end loop;
   
   exception when others then 
-    dbms_output.put_line('¿¹¿Ü¹ß»ı : ' || sqlerrm(sqlcode));   
+    dbms_output.put_line('ì˜ˆì™¸ë°œìƒ : ' || sqlerrm(sqlcode));   
 end;
 
 exec test_5;
@@ -121,50 +122,70 @@ create table orders_log (
   no            number,
   l_user        varchar2(40),
   l_orderid     number(2),
-  l_custid      number(2),
-  l_bookid      number(2),
-  l_saleprice   number(8),
-  l_orderdate   date,
+  l_newcustid   number(2),
+  l_oldcustid   number(2),
+  l_newbookid      number(2),
+  l_oldbookid      number(2),
+  l_newsaleprice   number(8),
+  l_oldsaleprice   number(8),
+  l_neworderdate   date,
+  l_oldorderdate   date,
   event_type    varchar2(40),
   udate         date
 );
+
+drop table orders_log;
 
 create sequence orders_log_no_seq
   start with 1
   minvalue 1
   maxvalue 99999
   nocycle
-  nocache;
+  nocache;   
    
 create or replace trigger test_6
-after update or delete on orders 
+after update or delete or insert on orders 
 for each row
 begin
   if updating then
     insert into orders_log 
-      values(orders_log_no_seq.nextval,user,:old.orderid,:old.custid,:old.bookid,
-              :old.saleprice,:old.orderdate,'º¯°æ Àü',sysdate);
+      values(orders_log_no_seq.nextval,user,:new.orderid,:new.custid,
+              :old.custid,:new.bookid,:old.bookid,
+              :new.saleprice,:old.saleprice,:new.orderdate,
+              :old.orderdate,'update',sysdate);
               
+  elsif inserting then
     insert into orders_log 
-      values(orders_log_no_seq.nextval,user,:new.orderid,:new.custid,:new.bookid,
-              :new.saleprice,:new.orderdate,'º¯°æ ÈÄ',sysdate);
-              
-  elsif deleting then
+      values(orders_log_no_seq.nextval,user,:new.orderid,:new.custid,
+              :old.custid,:new.bookid,:old.bookid,
+              :new.saleprice,:old.saleprice,:new.orderdate,
+              :old.orderdate,'insert',sysdate); 
+          
+  elsif deleting then 
     insert into orders_log 
-      values(orders_log_no_seq.nextval,user,:old.orderid,:old.custid,:old.bookid,
-              :old.saleprice,:old.orderdate,'»èÁ¦ Àü',sysdate);
+      values(orders_log_no_seq.nextval,user,:old.orderid,:new.custid,
+              :old.custid,:new.bookid,:old.bookid,
+              :new.saleprice,:old.saleprice,:new.orderdate,
+              :old.orderdate,'delete',sysdate);
   end if;
 end;
 
-update orders set saleprice = saleprice * 1.1;
+update orders set saleprice = 30000
+  where orderid in(3,5);
   
 delete orders 
-  where orderid in (2,4);
+  where orderid in (1);
+  
+insert into orders values(12,1,1,3000,'20220606');
+
+select * from orders;
   
 select * from orders_log;
 
+rollback;
+
 -- 7
-select t1.publisher ÃâÆÇ»ç, t2.name °í°´¸í, t1.sum ÁÖ¹®ÇÕ°è
+select t1.publisher ì¶œíŒì‚¬, t2.name ê³ ê°ëª…, t1.sum ì£¼ë¬¸í•©ê³„
   from (
           select b.publisher, c.custid, sum(o.saleprice) sum
             from orders o, customer c, book b
@@ -176,8 +197,8 @@ select t1.publisher ÃâÆÇ»ç, t2.name °í°´¸í, t1.sum ÁÖ¹®ÇÕ°è
   order by t1.publisher,t1.custid;          
 
 -- 8
-select b.publisher ÃâÆÇ»ç , nvl(sum(o.saleprice),0) ÃÑÆÇ¸Å±İ¾×,
-  rank() over(order by nvl(sum(o.saleprice),0) desc) ÆÇ¸Å¼øÀ§
+select b.publisher ì¶œíŒì‚¬ , nvl(sum(o.saleprice),0) ì´íŒë§¤ê¸ˆì•¡,
+  rank() over(order by nvl(sum(o.saleprice),0) desc) íŒë§¤ìˆœìœ„
   from book b, orders o
   where b.bookid = o.bookid(+)
   group by b.publisher
