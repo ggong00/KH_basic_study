@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지역변수/전역변수</title>
+</head>
+<body>
+    <script>
+        const x = 10;
+        const y = 20;
+        const z = 30;
+
+        const add = (x,y) => {
+            const z = 40;
+            console.log(x,y,z);
+        }
+        
+        add(x,y);
+    </script>
+</body>
+</html>

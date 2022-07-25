@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두개의 매개값을 입력받아 덧셈하는 함수</title>
+</head>
+<body>
+    <script>
+        const x = 10;
+        const y = 20;
+        console.log(x+y);
+
+        //case1) 함수 선언문
+        function add(x,y) {
+            return x + y;
+        } 
+        const sum = add(30,40);
+        console.log(`x+y = ${sum}`);
+        console.log(`x+y=${add(100,200)+100}`)
+
+        // case2) 함수 표현식
+        const add2 = function(x,y){
+            return x + y;
+        }
+        const sum2 = add2(30,40);
+        console.log(`x+y = ${sum2}`);
+        console.log(`x+y=${add2(100,200)+100}`)
+
+        // case3) 화살표 함수
+        // const add3 = (x,y) => {
+        //     return x + y;
+        // }
+
+        // 함수 몸체에 return문만 있는 경우 return,중괄호 생략가능
+        const add3 = (x,y) => x + y;
+        const sum3 = add3(30,40);
+        console.log(`x+y = ${sum3}`);
+        console.log(`x+y=${add3(100,200)+100}`);
+
+        
+
+    </script>
+</body>
+</html>

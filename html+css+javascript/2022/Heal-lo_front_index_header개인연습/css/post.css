@@ -1,0 +1,100 @@
+:root {
+  --main-logo-color : #16a085;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul,li {
+  list-style: none;
+}
+
+.header__main-logo h1 {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 48px;
+  color: var(--main-logo-color);
+  line-height: 4px;
+}
+
+header {
+  margin-left: 128px;
+  margin-right: 128px;
+  min-width: 824px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  border-bottom: 1px solid;
+
+}
+
+.menu-icon {
+  font-size: 36px;
+}
+
+.menu__customer-menu {
+  display: flex;
+  margin-top:  -8px;
+}
+
+.menu__customer-menu :nth-child(n) {
+  margin-left: 12px;
+}
+
+.header__sitemap .menu-icon {
+  margin-left: 48px;
+  cursor: pointer;
+  font-size: 42px;
+}
+
+/* .header__sitemap .menu-icon:hover {
+  background-color: aqua;
+  transition: 3s;
+} */
+
+.header__menu-contain {
+  margin-right: 48px;
+  margin-bottom: 48px;
+
+}
+
+.site-menu {
+  text-align: center;
+  font-size: 24px;
+}
+
+.site-menu i {
+  margin-left: 8px;
+}
+
+.gnb__site-map {
+  font-size: 12px;
+  display: none;
+}
+
+.gnb-focus {
+  display: flex;
+  justify-content: space-around;
+  background-color: beige;
+  width: 100%;
+}
+
+.manubar-focus {
+  background-color: aqua;
+}
+
+.gnb__site-map li:nth-child(1) {
+  border-bottom: 1px solid;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+
+
+
+
