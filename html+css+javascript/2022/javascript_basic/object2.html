@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //생성자 함수
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            // this.eat = function(){
+            //     console.log('먹다');
+            // }
+            // this.study = function(){
+            //     console.log('공부하다');
+            // }
+        }
+
+        // 프로토타입 메서드
+        Person.prototype.eat = function(){
+            console.log('먹다');
+        }
+
+        Person.prototype.study = function(){
+            console.log('공부하다');
+        }
+
+        //정적 데이터 프로퍼티
+        Person.national = '한국';
+
+        //정적 메서드 프로퍼티
+        Person.sleep = function(){
+            console.log('자다');
+        }
+
+        // 인스턴스
+        const p1 = new Person('홍길동',30);
+        const p2 = new Person('홍길순',40);
+
+        console.log(p1.name,p1.age);
+        p1.eat();
+        p1.study();
+
+        console.log(p2.name,p2.age);
+        p2.eat();
+        p2.study();
+        
+        console.log(Person.national);
+        console.log(Person.sleep());
+
+    </script>
+</body>
+</html>

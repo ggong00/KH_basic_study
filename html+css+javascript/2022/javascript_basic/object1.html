@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person = {};
+        person.name = '홍길동';
+        person.age = 30;
+        person.eat = () => console.log('먹다');
+        person.study = () => console.log('공부하다');
+
+        console.log(person['name'],person['age']);
+        person.eat();
+        person.study();
+        
+    </script>
+</body>
+</html>

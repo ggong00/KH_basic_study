@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>난수 문제풀기</title>
+    <style>
+        * {
+            margin: 0;padding: 0;
+            box-sizing: border-box;
+        }
+
+        #wrapper {
+            display: flex;
+            justify-content: center;
+            height: 60px;
+            width: 560px;
+            margin: 80px auto;
+            border-bottom: 1px solid rgb(199, 190, 190);
+        }
+
+        input {
+            width: 68px;
+            margin-left: 12px;
+            color: black;
+            font-weight: 800;
+            border-bottom-right-radius: 40% ;
+            border-top-left-radius : 40% ;
+            text-align: center;
+            border-color: rgb(16, 232, 85);
+            background-color: rgb(173, 243, 220);
+        }
+
+        button {
+            background-color: rgb(251, 188, 86);
+            height: 22px;
+            margin-left: 12px;
+            margin-top: 24px;
+            border: 0.1px solid rgb(214, 207, 207);
+            cursor: pointer;
+        }
+
+        span {
+            margin-left: 8px;
+        }
+
+        .result_coment {
+            display: flex;
+            justify-content: center;
+            margin: 0px auto;
+            margin-top: -62px;
+            font-size: large;
+            font-weight: 900;
+        }
+
+        th {
+            color: rgba(105, 100, 100, 0.875);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div>
+            <table>
+                <tr>
+                    <th>난수1</th>
+                    <th>난수2</th>
+                    <th>답</th>
+                </tr>
+                <tr>
+                    <td><input id="value1" type="text" readonly><span>+</span></td>
+                    <td><input id="value2" type="text" readonly><span>=</span></td>
+                    <td><input id="result" type="text" ></td>
+                </tr>
+            </table>
+        </div>    
+        <button id="btn_result">결과확인</button>
+        <button id="btn_reset">다시풀기</button>
+    </div>
+    <div class="result_coment"><p id="ment"></p></div>
+
+    <script>
+        /*
+            1) 2개 랜덤 값 발생
+            2) input 요소에 랜덤값 변견
+            3) 결과확인버튼 클릭
+            3-1) 일치하면 결과요소의 배경색을 초록색
+            3-2) 일치하지 않으면 결과 요소의 배경색을 빨간색
+            4) 다시풀기버튼 클릭
+            4-1) input요소에 랜덤값 반영
+            4-2) 결과값 요소 초기화
+        */
+
+        const resetBtn = document.getElementById('btn_reset');
+        const resultBtn = document.getElementById('btn_result');
+        const result = document.getElementById('result');
+        const ment = document.getElementById('ment');
+        let resultSave;
+
+        resetBtn.addEventListener('click', () => {
+            const value1 = document.getElementById('value1');
+            const value2 = document.getElementById('value2');
+            value1.value = Math.floor(Math.random()*1000+1);
+            value2.value = Math.floor(Math.random()*1000+1);
+            resultSave = parseInt(value1.value) + parseInt(value2.value);
+            result.style.backgroundColor = 'rgb(173, 243, 220)';
+            result.value = null;
+            ment.innerText = null;
+        })
+
+        resultBtn.addEventListener('click', () => {
+            console.log(typeof result.value);
+            console.log(typeof resultSave);         
+            if(result.value == resultSave) {
+                result.style.backgroundColor = "green";
+                result.value = '정답입니다.';
+                ment.innerText = '정답!!!!!'
+            } else {
+                result.style.backgroundColor = "rgb(239, 102, 102)";
+                result.value = '틀렸습니다.';
+                ment.innerText = '오답ㅠㅠㅠㅠ'
+            }
+        })
+    </script>
+</body>
+</html>
