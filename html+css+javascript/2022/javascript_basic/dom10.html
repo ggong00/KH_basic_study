@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="create_element.js"></script>
+</head>
+<body>
+    <div id="container">
+
+
+    </div>
+    <button>클릭</button>
+
+    <script>
+        const addmenu_h = e=> {
+            console.log('클릭');
+            const menuUl = makeElements('ul',{class : 'menu menu_level1'});
+
+            for (let i = 1; i <= 2; i++) {
+                const ele =  makeElements('li',{class : 'menu__item'},`menu${10+i}`,
+                                makeElements('ul',{class : 'menu menu__level2'},
+                                    makeElements('li',{class : 'menu__item'},'menu21'),
+                                    makeElements('li',{class : 'menu__item'},'menu22')
+                                )
+                            )
+
+                menuUl.appendChild(ele);
+            }
+            document.getElementById('container').appendChild(menuUl);
+        }
+        
+        document.querySelector('button').addEventListener('click',addmenu_h);
+
+    </script>
+
+</body>
+</html>

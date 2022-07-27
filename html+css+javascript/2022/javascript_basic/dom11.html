@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            padding: 0;margin: 0;
+        }
+
+        li,ul {
+            list-style: none;
+        }
+
+        .container .wrap {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .container .wrap .title {
+            align-self: center;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="wrap">
+            <label class="title" for="">댓글작성</label>
+            <textarea class="comment" name="" id="" cols="30" rows="3"></textarea>
+            <button class="btn btn__write">등록</button>
+        </div>    
+        <div class="coment__list">
+            <ul class="coments">
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.wrap .btn__write')
+        .addEventListener('click',() => {
+            const text = document.querySelector('.wrap .comment').value;
+            const liNode = document.createElement('li');
+
+            liNode.textContent = text;
+            liNode.classList.add('comment__item');
+
+            document.querySelector('.coment__list .coments')
+            .appendChild(liNode);
+        })
+
+    </script>
+</body>
+</html>

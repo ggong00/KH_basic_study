@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>간식 선택</legend>
+        <input type="checkbox" name="" id="v1" value="라면">
+        <label for="v1">라면</label>
+        <input type="checkbox" name="" id="v2" value="떡볶이">
+        <label for="v2">떡볶이</label>
+        <input type="checkbox" name="" id="v3" value="순대">
+        <label for="v3">순대</label>
+    </fieldset>
+    <div id="msg"></div>
+
+    <script>
+        const snacks = document.querySelectorAll('input[type=checkbox]');
+        const $msg = document.getElementById('msg');
+        let checkedCount = 0;
+        const selectSnacks = {
+            v1 : '',
+            v2 : '',
+            v3 : ''
+        }
+
+        snacks.forEach(snack => {
+            snack.addEventListener('click',(e) => {
+                if(e.target.checked) {
+                    selectSnacks[e.target.id] = `${e.target.value},`;
+                    checkedCount++;
+                } else {
+                    selectSnacks[e.target.id] = '';
+                    checkedCount--;
+                }
+
+                if(checkedCount == 0) {
+                    $msg.innerText = '';
+                } else {
+                    const {v1,v2,v3} = selectSnacks;
+                    let msg = `${v1}${v2}${v3}`
+
+                    $msg.innerText = `${msg.substring(0,msg.length-1)} 를 선택했습니다.`;
+                }
+            })
+        });
+
+    </script>
+
+</body>
+</html>

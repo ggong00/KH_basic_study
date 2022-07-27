@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="create_element.js"></script>
+    <style>
+        #container {
+            width: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="#">버튼추가</a>
+
+    <div id="container">
+
+    </div>
+
+    <script>
+        const atag = document.querySelector('a');
+
+        const addButton_h = (e) => {
+            e.preventDefault();
+            const button = makeElements('button',{class:'btn'},'클릭');
+            
+            const container = document.getElementById('container');
+            container.appendChild(button);
+        }
+
+        atag.addEventListener('click',addButton_h)
+
+        </script>
+</body>
+</html>

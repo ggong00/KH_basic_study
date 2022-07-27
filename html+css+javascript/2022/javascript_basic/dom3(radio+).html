@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7ee6b8223a.js" crossorigin="anonymous"></script>
+    <title>난수 문제풀기</title>
+    <style>
+        * {
+            margin: 0;padding: 0;
+            box-sizing: border-box;
+        }
+
+        #wrapper {
+            display: flex;
+            justify-content: center;
+            height: 280px;
+            width: 720px;
+            margin: 80px auto;
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+            background-color: #d1c4e9
+        }
+        
+        .section1 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .calculator__container {
+            width: 600px;
+        }
+
+        .calculator__container th {
+            color: #000000;
+            font-size: 18px;
+        }
+
+        .calculator__container th p {
+            margin-left: 16px;
+        }
+
+        .calculator__container td {
+            text-align: center;
+        }
+
+        .calculator__container span {
+            font-size: 28px;
+            display: inline-block;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #d1c4e9;
+        }
+
+        .calculator__container input {
+            width: 122px;
+            height: 56px;
+            margin-left: 12px;
+            color: black;
+            font-weight: 800;
+            font-size: 14px;
+            border-bottom-right-radius: 40% ;
+            border-top-left-radius : 40% ;
+            text-align: center;
+            border-color: #fff7ff;
+            background-color: #fff7ff
+        }
+
+        .operator__container {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-around;
+            border-color: #a094b7;
+        }
+
+        .operator__container div {
+            display: inline-block;
+        }
+
+        .operator__container input {
+            margin: 0;
+            margin-bottom: 18px;
+            width: 16px;
+        }
+
+        .operator__container span {
+            font-weight: 900;
+            font-size: 18px;
+            margin-right: 14px;
+        }
+
+        .btn__container {
+            text-align: center;
+        }
+
+        .btn__container .btn {
+            background-color: #a094b7;
+            border: 0.1px solid rgb(214, 207, 207);
+            cursor: pointer;
+            height: 32px;
+            width: 120px;
+            margin-left: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            transform: scale(1);
+            transition: ease-in-out 0.3s;
+        }
+
+        .btn__container .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .result_coment {
+            display: flex;
+            justify-content: center;
+            margin: 0px auto;
+            margin-top: -62px;
+            font-size: large;
+            font-weight: 900;
+        }
+
+        #operatorSpan {
+            position: relative;
+        }
+
+        #operatorSpan i {
+            position: absolute;
+            opacity: 0;
+            transition: all 0.3s;
+            font-size: 26px;
+            left: 17px;
+            top: 15px;
+        }
+
+        #operatorSpan i:nth-child(1) {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="wrapper">
+        <section class="section1">
+            <fieldset class="operator__container">
+                <legend>사칙연산자</legend>
+                <div>
+                    <input id="operatorPlus" type="radio" name="operator" value="+" checked>
+                    <label for="operatorPlus">더하기</label>
+                </div>    
+
+                <div>
+                    <input id="operatorMinus" type="radio" name="operator" value="-">
+                    <label for="operatorMinus">빼기</label>
+                </div>
+
+                <div>
+                    <input id="operatorMultiply" type="radio" name="operator" value="/">
+                    <label for="operatorMultiply">나누기</label>
+                </div>
+
+                <div>
+                    <input id="operatorDivision" type="radio" name="operator" value="x">
+                    <label for="operatorDivision">곱하기</label>
+                </div>        
+            </fieldset>    
+
+            <table class="calculator__container">
+                <tr>
+                    <th><p>난수1</p></th>
+                    <th></th>
+                    <th><p>난수2</p></th>
+                    <th></th>
+                    <th><p>답</p></th>
+                </tr>
+                <tr>
+                    <td><input id="value1" type="text" readonly></td>
+                    <td>
+                        <span id="operatorSpan">
+                            <i id="+" class="fa-solid fa-plus"></i>
+                            <i id="-" class="fa-solid fa-minus"></i>
+                            <i id="x" class="fa-solid fa-xmark"></i>
+                            <i id="/" class="fa-solid fa-divide"></i>
+                        </span>
+                    </td>
+                    <td><input id="value2" type="text" readonly></td>
+                    <td><span>=</span></td>
+                    <td><input id="result" type="text" ></td>
+                </tr>
+            </table>
+
+            <article class="btn__container">
+                <button class="btn" id="btn_result">결과확인</button>
+                <button class="btn" id="btn_reset">다시풀기</button>
+            </article>    
+        </section>    
+
+    </div>
+    <div class="result_coment">
+        <p id="ment"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script>
+        /*
+            1) 2개 랜덤 값 발생
+            2) input 요소에 랜덤값 변견
+            3) 결과확인버튼 클릭
+            3-1) 일치하면 결과요소의 배경색을 초록색
+            3-2) 일치하지 않으면 결과 요소의 배경색을 빨간색
+            4) 다시풀기버튼 클릭
+            4-1) input요소에 랜덤값 반영
+            4-2) 결과값 요소 초기화
+            5) 연산자 선택 기능 추가
+        */
+        const resetBtn = document.getElementById('btn_reset');
+        const resultBtn = document.getElementById('btn_result');
+        const result = document.getElementById('result');
+        const ment = document.getElementById('ment');
+
+        const value1 = document.getElementById('value1');
+        const value2 = document.getElementById('value2');
+        const operatorValue = document.querySelectorAll('.operator__container input[type=radio]'); 
+        const operatorValueForIcon = document.querySelectorAll('#operatorSpan i');
+        
+        let operatorMode = '+'; //초기값은 더하기
+        let resultSave; //연산 값을 저장해두는 전역변수
+
+        // 값 초기설정
+        value1.value = Math.floor(Math.random()*1000+1);
+        value2.value = Math.floor(Math.random()*1000+1);
+        resultSave = value1.value + value2.value;
+
+        // 리셋 이벤트 리스너
+        resetBtn.addEventListener('click', () => {
+            value1.value = Math.floor(Math.random()*1000+1);
+            value2.value = Math.floor(Math.random()*1000+1);
+
+            resultSave = operator(value1,value2);
+
+            result.style.backgroundColor = 'rgb(173, 243, 220)';
+            result.value = '';
+            ment.innerText = '';
+        })
+
+
+        // 결과확인 이벤트 리스너
+        resultBtn.addEventListener('click', () => {
+
+            if(result.value.trim().length == 0) {
+                Swal.fire('값을 입력해주세요!')
+            } else if(isNaN(result.value)) {
+                Swal.fire('숫자만 입력가능합니다!')
+            } else if(result.value == resultSave) {
+                result.style.backgroundColor = "green";
+                result.value = '정답';
+                ment.innerText = '정답!!!!!'
+            } else {
+                result.style.backgroundColor = "rgb(239, 102, 102)";
+                result.value = '오답';
+                ment.innerText = '오답ㅠㅠㅠㅠ'
+            }
+        })
+
+        // input요소에 이벤트리스너 설정 (클릭 시 해당 값에따라 연산 변경)
+        operatorValue.forEach(item => {
+            item.addEventListener('click',(e) => {
+                const operatorSpan = document.getElementById('operatorSpan');
+                operatorMode = e.target.value;
+                resultSave = operator(value1,value2);
+
+                operatorValueForIcon.forEach(icon => {
+                    if(icon.id === operatorMode) {
+                        icon.style.opacity = 1;
+                    } else {
+                        icon.style.opacity = 0;
+                    } 
+
+                }) 
+
+            })
+        })
+
+        // 연산 종류에따라 연산을 하는 함수
+        function operator(value1, value2) {
+            let result = 0;           
+
+            if(operatorMode == '+') {
+                result = parseInt(value1.value) + parseInt(value2.value);  
+            } else if(operatorMode == '-') {
+                result = parseInt(value1.value) - parseInt(value2.value);
+            } else if(operatorMode == '/') {
+                result = parseInt(value1.value) / parseInt(value2.value);
+            } else {
+                result = parseInt(value1.value) * parseInt(value2.value);
+            }
+
+            console.log(`답지일지도?? = ${result}`);
+            return result;
+        }
+
+    </script>
+</body>
+</html>

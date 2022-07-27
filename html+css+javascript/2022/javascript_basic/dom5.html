@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>간식 선택</legend>
+        <select name="snack" id="snack">
+            <option value="">==선택==</option>
+            <option value="떡볶이">떡볶이</option>
+            <option value="순대">순대</option>
+            <option value="라면">라면</option>
+        </select>
+    </fieldset>
+    <div id="msg"></div>
+
+    <script>
+        const snack = document.getElementById('snack');
+        snack.addEventListener('change',selectSnack_h);
+
+        function selectSnack_h(e) {
+            const msg = `${e.target.value}를 선택했습니다.`;
+            document.getElementById('msg').innerText = msg
+        }
+
+
+    </script>
+</body>
+</html>

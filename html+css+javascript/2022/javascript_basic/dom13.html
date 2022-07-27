@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="create_element.js"></script>
+
+    <style>
+        p {
+            margin: 0;padding: 0;
+        }
+
+        ul,li {
+            list-style: none;
+        }
+
+        textarea {
+            height: 48px;
+            width: 100%;
+        }
+
+        .write-box {
+            opacity: 0;
+        }
+
+        .clicked {
+            opacity: 1;
+        }
+
+        .text-box span:nth-child(1) {
+            font-size: 8px;
+            margin: 0 4px;
+        }
+
+        .text-box span:nth-child(2) {
+            font-size: 8px;
+            margin: 0 4px;
+
+        }
+
+        .coments-list {
+            margin-top: 24px;
+        }
+
+    </style>
+</head>
+<body>
+    <button id="btn-write">글 작성</button>
+
+    <div class="write-box">
+        <div class="write-area">
+            <textarea name="" id="write-text" cols="30" rows="10">
+
+            </textarea>
+        </div>    
+        <button class="btn-complate">완료</button>
+    </div>
+
+    <div class="coments-list">
+        <div class="text-box">
+            <!-- <span>작성자1</span>
+            <span>2022.08.01</span>
+            <span>
+                <button class="update">수정</button>
+                <button class="delete">삭제</button>
+            </span>
+            <p>ㅇㅁㄴㅁㄴㅇ</p>
+            <div class="write-area">
+                <textarea name="" id="" class="update-contents" cols="30" rows="10">
+                    
+                </textarea>
+            </div>   
+            <button>수정완료</button> -->
+        </div>
+    </div>
+
+    <script>
+        let num = 0;
+        const comentList = document.querySelector('.coments-list');
+        const writeBox = document.querySelector('.write-box');
+
+        // 글작성 버튼 클릭 시 텍스트 작성공간 생성
+        document.getElementById('btn-write')
+        .addEventListener('click', () => {
+            document.querySelector('.write-box #write-text').value = '';
+            writeBox.classList.toggle('clicked');
+        })
+
+        // 완료버튼 클릭 시 글 생성
+        document.querySelector('.btn-complate')
+        .addEventListener('click', () => {
+            writeBox.classList.toggle('clicked');
+            
+            num++;
+            // 작성한내용 객체에 접근
+            const text = document.getElementById('write-text').value;
+
+            // 작성글 생성
+            const coment = makeElements('div',{class : 'text-box'}
+                                        ,makeElements('span',null ,`작성자${num}`)
+                                        ,makeElements('span',null,`2022.08.0${num}`)
+                                        ,makeElements('span',null
+                                            ,makeElements('button',{class: 'update'},'수정')
+                                            ,makeElements('button',{class : 'delete'},'삭제')
+                                        )
+                                        ,makeElements('p',{class : 'contents'},text));
+
+            // 작성글 추가
+            
+            comentList.appendChild(coment);
+
+            // 작성글 삭제
+            coment.querySelector('.delete')
+            .addEventListener('click', () => {
+                coment.remove();
+            })
+
+            // 작성글 수정
+            coment.querySelector('.update')
+            .addEventListener('click', () => {
+                const contents = coment.querySelector('.contents');
+                
+                const updateArea = makeElements('div',{class : 'write-area'}
+                    ,makeElements('textarea', {class : 'update-contents',cols : '30',rows : '10'}, contents.innerText)
+                    ,makeElements('button',{class : 'completion'},'수정완료')
+                ); 
+
+                contents.remove();
+                coment.appendChild(updateArea);
+
+                // 수정완료 버튼 클릭
+                coment.querySelector('.completion')
+                .addEventListener('click',() => {
+                    const newContents = coment.querySelector('.update-contents').value;
+                    updateArea.remove();
+
+                    const text = makeElements('p',{class : 'contents'},newContents)
+                    coment.appendChild(text);
+                })
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>

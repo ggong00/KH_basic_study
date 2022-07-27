@@ -106,17 +106,18 @@
             value2.value = Math.floor(Math.random()*1000+1);
             resultSave = parseInt(value1.value) + parseInt(value2.value);
             result.style.backgroundColor = 'rgb(173, 243, 220)';
-            result.value = null;
-            ment.innerText = null;
+            result.value = '';
+            ment.innerText = '';
         })
 
         resultBtn.addEventListener('click', () => {
-            console.log(typeof result.value);
-            console.log(typeof resultSave);         
             if(result.value == resultSave) {
                 result.style.backgroundColor = "green";
                 result.value = '정답입니다.';
                 ment.innerText = '정답!!!!!'
+            } else if(result.value == '') {
+                alert('답을 입력해주세요!')
+
             } else {
                 result.style.backgroundColor = "rgb(239, 102, 102)";
                 result.value = '틀렸습니다.';

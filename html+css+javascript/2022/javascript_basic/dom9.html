@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="create_element.js"></script>
+</head>
+<body>
+    <div id="container">
+        <ul>
+            <!-- <lu>menu1</lu>
+            <lu>menu2</lu>
+            <lu>menu3</lu> -->
+        </ul>
+    </div>
+     <button  id="btn">클릭</button>
+
+     <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click',createUl);
+        
+
+        function createUl() {
+            const div = makeElements('div',null,
+                            makeElements('li',null,'menu1'),
+                            makeElements('li',null,'menu2'),
+                            makeElements('li',null,'menu3'),
+                            'text2'
+                            );
+
+            document.querySelector('#container ul').appendChild(div);
+        }
+
+        
+
+     </script>
+</body>
+</html>
