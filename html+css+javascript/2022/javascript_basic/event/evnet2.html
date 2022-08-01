@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul class="menu">
+            <li class="menu__item">menu1</li>
+            <li class="menu__item">menu2</li>
+            <li class="menu__item">menu3</li>
+        </ul>
+        <div id="msg"></div>
+    </div>
+
+
+    <script>
+        // const items = document.querySelectorAll('.menu__item');
+        // items.forEach((item) => {
+        //     item.addEventListener('click',() => {
+        //         document.getElementById('msg').textContent
+        //         = `${item.textContent} 메뉴를 선택했습니다.`; 
+        //     })
+        // })
+
+        document.querySelector('.menu')
+        .addEventListener('click', (e) => {
+            document.getElementById('msg').textContent =
+            `${e.target.textContent} 메뉴를 선택했습니다.`;
+        })    
+
+        // 버블링 단계
+        // window.addEventListener('click',(e) => {
+        //     console.log('window');
+        // })  
+        // window.document.addEventListener('click',(e) => {
+        //     console.log('document');
+        // })  
+        // window.document.documentElement.addEventListener('click',(e) => {
+        //     console.log('html');
+        // })  
+        // window.document.body.addEventListener('click',(e) => {
+        //     console.log('body');
+        // })  
+        // document.getElementById('container')
+        // .addEventListener('click', (e) => {
+        //     console.log('container');
+        // })
+        // document.querySelector('#container .menu')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu');
+        // })
+        // document.querySelector('#container .menu .menu__item:nth-child(1)')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu1');
+        // })
+        // document.querySelector('#container .menu .menu__item:nth-child(2)')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu2');
+        // })
+        // document.querySelector('#container .menu .menu__item:nth-child(3)')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu3');
+        // })
+
+        // // 캡쳐링 단계
+        // window.addEventListener('click',(e) => {
+        //     console.log('window');
+        // },true)  
+        // window.document.addEventListener('click',(e) => {
+        //     console.log('document');
+        // },true)  
+        // window.document.documentElement.addEventListener('click',(e) => {
+        //     console.log('html');
+        // },true)  
+        // window.document.body.addEventListener('click',(e) => {
+        //     console.log('body');
+        // },true)  
+        // document.getElementById('container')
+        // .addEventListener('click', (e) => {
+        //     console.log('container');
+        // },true)
+        // document.querySelector('#container .menu')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu');
+        // },true)
+        // document.querySelector('#container .menu .menu__item:nth-child(1)')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu1');
+        // },true)
+        // document.querySelector('#container .menu .menu__item:nth-child(2)')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu2');
+        // },true)
+        // document.querySelector('#container .menu .menu__item:nth-child(3)')
+        // .addEventListener('click', (e) => {
+        //     console.log('menu3');
+        // },true)
+    </script>
+
+</body>
+</html>

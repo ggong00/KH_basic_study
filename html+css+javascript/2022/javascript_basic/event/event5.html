@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul,li {margin: 0;padding: 0;list-style-type: none;}
+
+        .test {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <fieldset>
+            <legend>취미</legend>
+            <ul class="hobby">
+                <li class="select--all">
+                    <input type="checkbox"><span>전체선택</span>
+                </li>
+                <li class="hobby_item">
+                    <input type="checkbox"><span>취미1</span>
+                </li>
+                <li class="hobby_item">
+                    <input type="checkbox"><span>취미2</span>
+                </li>
+                <li class="hobby_item">
+                    <input type="checkbox"><span>취미3</span>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+
+    <script>
+        const selectAll = document.querySelector('.select--all input');
+        selectAll.addEventListener('click',(e) => {    
+            const hobbys = document.querySelectorAll('.hobby_item input');
+            hobbys.forEach(hobby => {
+                if(selectAll.checked) {
+                    hobby.checked = 'on';
+                } else {
+                    hobby.checked = null;
+                }
+            })
+        })
+    </script>
+
+</body>
+
+</html>

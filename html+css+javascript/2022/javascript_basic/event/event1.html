@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button class="btn btn__save">저장</button>
+    </div>
+    <div id="msg"></div>
+
+    <script>
+        //1) 이벤트소스(타겟) : 저장버튼
+
+        //2} 이벤트타입(이름) : click
+
+        //3) 이벤트 리스너(핸들러) : '저장하겠습니다'
+
+        //4) 이벤트 객체: 이벤트가 발생했을때 이벤트관련 정보를 얻기
+        //                이벤트 핸들러 메소드 첫 번째 매개변수로 넘겨받음
+
+        //5) 이벤트 흐름: 캡쳐링단계, 버블링단계 
+
+
+        const btn = document.querySelector('#container .btn.btn__save');
+        const saveBtn_h = e => {
+            console.log('cilck');
+            document.getElementById('msg').textContent = '저장했습니다.';
+        };
+
+        btn.addEventListener('click', saveBtn_h);
+
+    </script> 
+</body>
+</html>

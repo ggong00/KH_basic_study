@@ -59,8 +59,8 @@
     </div>
 
     <div class="coments-list">
-        <div class="text-box">
-            <!-- <span>작성자1</span>
+        <!-- <div class="text-box">
+            <span>작성자1</span>
             <span>2022.08.01</span>
             <span>
                 <button class="update">수정</button>
@@ -72,12 +72,12 @@
                     
                 </textarea>
             </div>   
-            <button>수정완료</button> -->
-        </div>
+            <button>수정완료</button>
+            <button>취소</button>
+        </div> -->
     </div>
 
     <script>
-        let num = 0;
         const comentList = document.querySelector('.coments-list');
         const writeBox = document.querySelector('.write-box');
 
@@ -92,23 +92,21 @@
         document.querySelector('.btn-complate')
         .addEventListener('click', () => {
             writeBox.classList.toggle('clicked');
-            
-            num++;
+
             // 작성한내용 객체에 접근
             const text = document.getElementById('write-text').value;
 
-            // 작성글 생성
+            // 작성글 추가
+            let date = new Date();
+            const dateInfo = `${date.getFullYear()}.${date.getMonth()+1}.${date.getDate()} ${date.getHours()}:${date.getMinutes()}`        
             const coment = makeElements('div',{class : 'text-box'}
-                                        ,makeElements('span',null ,`작성자${num}`)
-                                        ,makeElements('span',null,`2022.08.0${num}`)
+                                        ,makeElements('span',null ,`작성자${Math.floor(Math.random*100 + 1)}`)
+                                        ,makeElements('span',null,`${dateInfo}`)
                                         ,makeElements('span',null
                                             ,makeElements('button',{class: 'update'},'수정')
                                             ,makeElements('button',{class : 'delete'},'삭제')
                                         )
-                                        ,makeElements('p',{class : 'contents'},text));
-
-            // 작성글 추가
-            
+                                        ,makeElements('p',{class : 'contents'},text));     
             comentList.appendChild(coment);
 
             // 작성글 삭제
@@ -125,8 +123,11 @@
                 const updateArea = makeElements('div',{class : 'write-area'}
                     ,makeElements('textarea', {class : 'update-contents',cols : '30',rows : '10'}, contents.innerText)
                     ,makeElements('button',{class : 'completion'},'수정완료')
+                    ,makeElements('button',{class : 'cencel'},'취소')
                 ); 
 
+                // 수정 전 텍스트 보관
+                const oldContents = contents.textContent;
                 contents.remove();
                 coment.appendChild(updateArea);
 
@@ -135,15 +136,22 @@
                 .addEventListener('click',() => {
                     const newContents = coment.querySelector('.update-contents').value;
                     updateArea.remove();
+                    const text = makeElements('p',{class : 'contents'},newContents);
+                    coment.appendChild(text);
+                })
 
-                    const text = makeElements('p',{class : 'contents'},newContents)
+                // 취소 버튼 클릭
+                coment.querySelector('.cencel')
+                .addEventListener('click',() => {
+                    updateArea.remove();
+                    const text = makeElements('p',{class : 'contents'},oldContents);
                     coment.appendChild(text);
                 })
 
             })
         })
-
     </script>
+
 </body>
 
 </html>

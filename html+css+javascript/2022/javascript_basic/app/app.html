@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table th,table td {
+            border: 1px solid #ccc;
+        } 
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="table__container">
+            <table>
+                <div class="btngrp">
+                    <button class="btn btn__list">데이터수신</button>
+                </div>
+                <thead>
+                    <tr>
+                        <th>이름</th>
+                        <th>성별</th>
+                        <th>나이</th>
+                        <th>혈액형</th>    
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                        <td>이름1</td>
+                        <td>남</td>
+                        <td>10</td>
+                        <td>A</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>    
+    </div>
+
+    <script>
+        const data = {
+            result:'success',    // success: 수신성공, fail:수신실패
+            data:[
+                {name:'이름1',gender:'남',age:10,blood:'A'},
+                {name:'이름2',gender:'여',age:20,blood:'B'},
+                {name:'이름3',gender:'남',age:30,blood:'O'},
+                {name:'이름4',gender:'여',age:40,blood:'AB'},
+                {name:'이름5',gender:'남',age:50,blood:'A'}
+            ]
+        };
+
+        const trTag = ({name,gender,age,blood}) => {
+            return `<tr><td>${name}</td><td>${gender}</td><td>${age}</td><td>${blood}</td></tr>`;            
+        }
+
+        const result = data.data.map(ele => trTag(ele))
+        console.log(result)
+
+        document.querySelector('table tbody').innerHTML = result.join(''); 
+
+    </script>
+</body>
+</html>

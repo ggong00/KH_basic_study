@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            outline: 1px solid red;
+        }
+
+        .menu {
+            outline: 5px solid blue;
+        }
+
+        .active {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul class="menu">
+            <li class="menu__item" data-selected-menu = "m1">menu1</li>
+            <li class="menu__item" data-selected-menu = "m2">menu2</li>
+            <li class="menu__item" data-selected-menu = "m3">menu3</li>
+            <li class="menu__item" data-selected-menu = "m4">menu4</li>
+            <li class="menu__item" data-selected-menu = "m5">menu5</li>
+            <li class="menu__item" data-selected-menu = "m6">menu6</li>
+            <li class="menu__item" data-selected-menu = "m7">menu7</li>
+        </ul>
+        <div id="msg">메뉴를 선택했습니다</div>
+    </div>
+
+    <script>
+        const menu = document.querySelector('#container .menu')
+        menu.addEventListener('click', e => {
+            if(e.target.tagName != 'LI') return;
+
+            const menuItems = document.querySelectorAll('#container .menu .menu__item')
+            // for(let menuItem of menuItems) {
+            //     // if(menuItem == e.target) {
+            //     //     menuItem.classList.add('active');
+            //     // }else {
+            //     //     menuItem.classList.remove('active');
+            //     // }
+            //     menuItem.classList.toggle('active',menuItem == e.target)
+            // }
+
+            menuItems.forEach(item => item.classList
+                                      .toggle('active',item == e.target));
+
+
+            const selected = e.target.dataset.selectedMenu;
+            // case2)
+            // const children =  e.currentTarget.children;
+            // for(let i= 0; i<children.length; i++) {
+            //     children[i].classList.toggle('active',selected == children[i].dataset.selectedMenu);
+            // }
+
+            // case3)
+            // const lis = document.querySelectorAll('#container .menu li');
+            // lis.forEach(li => {
+            //     li.classList.toggle('active',
+            //      selected == li.dataset.selectedMenu);
+            // })
+        })
+
+        // menu.addEventListener('mouseout', () => {
+        //     const lis = document.querySelectorAll('#container .menu li');
+        //     lis.forEach(li => {
+        //         li.classList.toggle('active',false);
+        //     })
+        // })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            outline: 1px solid red;
+        }
+
+        .color__red { background-color: rgb(230, 84, 89);}
+        .color__green { background-color: rgb(146, 238, 148);}
+        .color__blue { background-color: rgb(114, 158, 209);}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul class="menu">
+            <li class="menu__item" data-selected-menu = "m1">menu1</li>
+            <li class="menu__item" data-selected-menu = "m2">menu2</li>
+            <li class="menu__item" data-selected-menu = "m3">menu3</li>
+        </ul>
+        <div id="msg">메뉴를 선택했습니다</div>
+    </div>
+
+    <script>
+        const changeBgColor = (e) => {
+            // 객체 구조분해(destructuring)
+            const {type, target, currentTarget} = e;
+            // console.log(target.dataset.selectedMenu);
+            // const a = e.target.attributes['data-selected-menu'].value;
+            // console.log(a);
+            const menu = document.querySelector('.menu');
+
+            const choice =  target.dataset.selectedMenu;
+
+            menu.classList.toggle('color__red',choice == 'm1');
+            menu.classList.toggle('color__green',choice == 'm2');
+            menu.classList.toggle('color__blue',choice == 'm3');
+        }
+    
+        const selectMenu_h = e => {
+            const msg = `${e.target.textContent} 메뉴를 선택했습니다.`;
+            document.getElementById('msg').textContent
+            = msg;
+
+            changeBgColor(e);
+        }
+        document.querySelector('#container .menu')
+        .addEventListener('click',selectMenu_h);
+
+    </script>
+    
+</body>
+</html>
