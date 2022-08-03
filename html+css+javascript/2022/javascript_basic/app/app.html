@@ -22,6 +22,17 @@
                 <div class="btngrp">
                     <button class="btn btn__list">데이터수신</button>
                 </div>
+                <div class="criteria">
+                    <fieldset class="criteria__gender">
+                        <legend>성별</legend>
+                        <label for="남">남</label><input type="radio" name="gender" id="남">
+                        <label for="여">여</label><input type="radio" name="gender" id="여">
+                    </fieldset>
+                    <!-- <fieldset> 
+                        <label for="">오름차순</label><input type="radio" name="sort">
+                        <label for="">내림차순</label><input type="radio" name="sort">
+                    </fieldset> -->
+                </div>
                 <thead>
                     <tr>
                         <th>이름</th>
@@ -54,14 +65,35 @@
             ]
         };
 
+        //객체 1개를 tr태그로 랜더링
         const trTag = ({name,gender,age,blood}) => {
             return `<tr><td>${name}</td><td>${gender}</td><td>${age}</td><td>${blood}</td></tr>`;            
+        };
+
+        // 데이터 수신 시작
+        const btnlist = document.querySelector('.btn.btn__list');
+        const btnList_h = e => {
+
+            //데이터 추출
+            result = data.data.map(ele => trTag(ele))
+            console.log(result)
+
+            document.querySelector('table tbody').innerHTML = result.join('');         
         }
 
-        const result = data.data.map(ele => trTag(ele))
-        console.log(result)
+        btnlist.addEventListener('click',btnList_h);
+        // 데이터 수신 종료
 
-        document.querySelector('table tbody').innerHTML = result.join(''); 
+        // 성별 선택
+        const $criteriaGender = document.querySelector('.criteria__gender');
+        const criteriaGender_h = ({target,currentTarget}) => {
+            // console.log(target.id);
+            // console.log(currentTarget);
+            const result = data.data.filter(ele => ele.gender==target.id)
+                              .map(ele =>trTag(ele));
+            document.querySelector('table tbody').innerHTML = result.join('');         
+        }
+        $criteriaGender.addEventListener('change',criteriaGender_h)
 
     </script>
 </body>

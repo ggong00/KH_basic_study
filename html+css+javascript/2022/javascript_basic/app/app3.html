@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table th,table td {
+            border: 1px solid #ccc;
+        } 
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="table__container">
+            <table>
+                <div class="btngrp">
+                    <button class="btn btn__list" id="수신">데이터수신</button>
+                </div>
+                <div class="criteria">
+                    <fieldset class="criteria__gender">
+                        <legend>성별</legend>
+                        <label for="남">남</label><input type="radio" name="gender" id="남">
+                        <label for="여">여</label><input type="radio" name="gender" id="여">        
+                    </fieldset>
+                    <fieldset class="criteria__sort--age"> 
+                        <label for="">오름차순</label><input type="radio" name="sort" id="asc">
+                        <label for="">내림차순</label><input type="radio" name="sort" id="desc">
+                    </fieldset>
+                </div>
+                <thead>
+                    <tr>
+                        <th>이름</th>
+                        <th>성별</th>
+                        <th>나이</th>
+                        <th>혈액형</th>    
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                        <td>이름1</td>
+                        <td>남</td>
+                        <td>10</td>
+                        <td>A</td>
+                    </tr> -->
+                </tbody>
+            </table>
+        </div>    
+    </div>
+
+    <script>
+        const data = {
+            result:'success',    // success: 수신성공, fail:수신실패
+            data:[
+                {name:'이름1',gender:'남',age:10,blood:'A'},
+                {name:'이름2',gender:'여',age:20,blood:'B'},
+                {name:'이름3',gender:'남',age:30,blood:'O'},
+                {name:'이름4',gender:'여',age:40,blood:'AB'},
+                {name:'이름5',gender:'남',age:50,blood:'A'}
+            ]
+        };
+
+        // 랜더링
+        // 1) tr태그
+        const trTag = ({name,gender,age,blood}) => {
+            return `<tr>
+                        <td>${name}</td>
+                        <td>${gender}</td>
+                        <td>${age}</td>
+                        <td>${blood}</td>
+                    </tr>`;            
+        };
+
+        // 이벤트 타겟
+        const $btnlist = document.querySelector('.btn.btn__list');
+        const $tbody = document.querySelector('table tbody');
+
+        const $criteriaGender = document.querySelector('.criteria__gender');
+        const $select = document.querySelectorAll('.criteria__gender input[type=radio]');
+
+        const $criteriaSort = document.querySelector('.criteria__sort--age');
+        const $btnSorts = document.querySelectorAll('.criteria__sort--age input[type=radio]');
+
+        // 이벤트 핸들러
+        // 1)데이터 수신 클릭
+        $btnlist.addEventListener('click',e => {
+
+            [...$select,...$btnSorts].filter(ele => ele.checked == true)
+                                     .forEach(ele => ele.checked = false);                             
+            rander();
+        });
+
+        // 2)성별 클릭
+        $criteriaGender.addEventListener('change',rander);
+
+        // 3)정렬 클릭(나이기준)
+        $criteriaSort.addEventListener('change',rander)
+
+        //랜더링 함수
+        function rander() {
+            let result = data.data;
+
+            const genderChecked = [...$select].find(ele => ele.checked == true);
+            const sortChecked = [...$btnSorts].find(ele => ele.checked == true);
+
+            if(genderChecked)
+                result = result.filter(ele => ele.gender == genderChecked.id);
+
+            if(sortChecked) {
+                let sortFunc = '';
+
+                switch(sortChecked.id){
+                case "asc" : 
+                    sortFunc = (pre,next) => pre.age-next.age;
+                    break; 
+                case "desc" : 
+                    sortFunc = (pre,next) => next.age-pre.age;
+                    break;    
+                }
+                result = result.sort(sortFunc)                       
+            }
+
+            $tbody.innerHTML = result.map(ele => trTag(ele))
+                                     .join('');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* * {
+      outline: 1px solid red;
+    } */
+    body {
+      margin:0px;
+    }
+    .wrap {
+      display:flex;
+      height:100vh;
+      justify-content: center;
+      align-items: center;
+    }
+    .wrap .loginBox {
+      border:1px solid #ccc;
+      padding:10px;
+    }
+    .wrap .loginBox form label {
+      display:inline-block;
+      background-color: yellow;
+      width:80px;
+      text-align: center;
+      padding: 3px;
+    }    
+    .wrap .loginBox form button {
+      width:100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="loginBox">
+      <form action="">
+        <p><label>아이디</label><input type="text"></p>
+        <p><label>비밀번호</label><input type="password"></p>
+        <p><button>로그인</button></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

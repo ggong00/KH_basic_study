@@ -1,0 +1,43 @@
+* {
+  outline: 1px solid black;
+}
+
+/* wrap 영역 */
+#wrap {
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* header 영역 */
+#header {
+  height: 400px;
+}
+.header__gnb .heder__gnb-menu {
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+}
+.header__banner {
+  height: 350px;
+}
+
+/* main 영역 */
+#container {
+  display: flex;
+  flex-direction: column;
+  height: 1200px;
+}
+#container .container__section1 {
+  flex: 1;
+}
+#container .container__section2 {
+  flex: 3;
+}
+
+/* footer 영역 */
+#footer {
+  height: 100px;
+}

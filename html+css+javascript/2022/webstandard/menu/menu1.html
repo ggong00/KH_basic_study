@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    a {
+      text-decoration: none;
+      color:inherit;
+    }
+    ul {
+      display: flex;
+      margin: 0;
+      padding-left: 0;
+      list-style: none; /*불릿제거*/
+      background-color: yellowgreen;
+      padding:10px;
+    }
+
+    ul li {
+      flex: 1;
+      background-color: yellow;
+      text-align: center;
+      transition: all 0.5s;
+    }
+
+
+    ul li:hover {
+      background-color: pink;
+      box-shadow:2px 4px #a18e8e;
+      z-index: 1;
+      transform: scale3d(1.025,1.025,1.025);
+    }
+
+    /* ul li:hover ul {
+      display:block;
+    } */
+
+    ul ul {
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><a href="http://www.naver.com">menu1</a></li>
+    <ul>
+      <li>submenu1</li>
+      <li>submenu2</li>
+      <li>submenu3</li>
+    </ul>
+    <li><a href="http://www.google.com">menu2</a></li>
+    <li><a href="#">menu3</a></li>
+    <li><a href="#">menu4</a></li>
+    <li><a href="#">menu5</a></li>
+  </ul>
+</body>
+</html>

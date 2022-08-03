@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {margin: 0; padding: 0;background-color: azure;}
+        ul,li,p {margin: 0; padding: 0;}
+        ul,li{list-style-type: none;}
+        
+        #container {
+            display: flex;
+            height: 100vh;
+            
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container .product{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container .product .product_item{
+            flex-basis: 150px;
+            flex-shrink: 0; /* 뷰포트가 줄때 item폭을 줄임 방지 */
+            position: relative;
+            margin: 0 5px;
+            transition: all .4s;
+            opacity: 0.7;
+        }
+
+        #container .product .product_item:hover{
+            flex-basis: 200px;
+            margin: 0 20px;
+            opacity: 1;
+        }
+
+        #container .product .product_item .profile.profile--pink{
+            color: #4800ff;
+            font-weight: 800;
+        }
+
+        #container .product .product_item .profile.profile--green{
+            color: #008000;
+            font-weight: 800;
+
+        }
+
+        #container .product .product_item .profile.profile--purple{
+            color: #800080;
+            font-weight: 800;
+
+        }
+
+        #container .product .product_item:hover .profile .profile_contents{
+            max-height: 150px;
+        }
+
+        #container .product .product_item .profile{
+            position: relative;
+        }
+
+        #container .product .product_item .profile img{
+            width: 100%;
+        }
+
+        #container .product .product_item .profile .profile_contents {
+            position: absolute;
+            bottom: 0; left: 0;
+            padding: 10px;
+
+        }
+        #container .product .product_item .profile .profile_contents::before {
+            content: ' ';
+            display: block;
+            background: -moz-linear-gradient(left,  rgba(0,0,0,0.33) 0%, rgba(0,0,0,0) 100%); 
+            background: -webkit-linear-gradient(left,  rgba(0,0,0,0.33) 0%,rgba(0,0,0,0) 100%);
+            background: linear-gradient(to right,  rgba(0,0,0,0.33) 0%,rgba(0,0,0,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#54000000', endColorstr='#00000000',GradientType=1 );
+
+            font-weight: 800;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+        }
+        #container .product .product_item .profile .profile_contents h3{
+            margin-top: 0;
+            font-size: 16px;
+            opacity: 1;
+        }
+
+        #container .product .product_item .profile .profile_contents h3 span{
+            display: block;
+            font-size: 0.9em;
+        }
+        #container .product .product_item .profile .profile_contents h3 span:after {
+            content: attr(data-unit);
+        }
+
+        #container .product .product_item .profile .profile_contents p {
+            font-size: 12px;
+            color: #fff;
+            max-height: 0;
+            max-width: 140px;
+            overflow: hidden;
+            line-height: 1.2;
+            transition: all 1s;
+            opacity: 0;
+
+        }
+        #container .product .product_item:hover .profile .profile_contents p {
+            max-height: 150px;
+            transition-delay: 0.4s;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul class="product">
+            <li class="product_item">
+                <div class="profile profile--pink">
+                    <img src="https://cdn.pixabay.com/photo/2018/10/06/11/22/coffee-3727673_960_720.jpg" alt="">
+                    <div class="profile_contents">
+                        <h3>카푸치노<span data-unit="원">4,000</span></h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat odit sit, error maiores iusto enim repudiandae laboriosam ad nostrum totam cum accusamus eveniet asperiores, quaerat accusantium odio neque consectetur vitae.</p>
+                    </div>
+                </div>
+            </li>
+            <li class="product_item">
+            <div class="profile profile--green">
+                <img src="https://cdn.pixabay.com/photo/2016/11/19/12/54/coffee-1839133_960_720.jpg" alt="">
+                <div class="profile_contents">
+                    <h3>아메리카노<span data-unit="원">2,000</span></h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat odit sit, error maiores iusto enim repudiandae laboriosam ad nostrum totam cum accusamus eveniet asperiores, quaerat accusantium odio neque consectetur vitae.</p>
+                </div>
+            </div>
+            </li>
+            <li class="product_item">
+                <div class="profile profile--purple">
+                <img src="https://cdn.pixabay.com/photo/2019/12/02/11/23/drink-4667507_960_720.jpg" alt="">
+                <div class="profile_contents">
+                <h3>바닐라라떼<span data-unit="원">3,500</span></h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat odit sit, error maiores iusto enim repudiandae laboriosam ad nostrum totam cum accusamus eveniet asperiores, quaerat accusantium odio neque consectetur vitae.</p>
+            </div>
+            </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

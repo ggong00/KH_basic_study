@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../main/resset.css">
+  <style>
+    /* * {outline:1px solid red;} */
+    * {
+      margin: 0;padding: 0;
+    }
+
+    body {
+      margin:0;
+      background-color: #eee;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    #wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width:60%;
+      margin: 0 auto;
+    }
+
+    #wrapper > .container {
+      display:flex;
+      justify-content: center;
+    }
+    
+    #wrapper > .container > .content {
+      width: 80%;
+    }
+    
+    /* uppermost */
+    #wrapper > #uppermost {
+      background-color: #bcd0d9;
+    }
+
+    #wrapper > #uppermost > .content {
+      width: 100%;
+      height: 50px;
+      background-color: #bc477b;
+    }
+
+    /* header */
+    #wrapper > #header {
+      background-color: #ff79b0;
+    }
+    #wrapper > #header > .content {
+      height:150px;
+      background-color: #ff4081;
+    }
+
+    /* gnb */
+    #wrapper > #gnb {
+      background-color: #b47cff;
+    }
+    #wrapper > #gnb > .content {
+      height:50px;
+      background-color: #7c4dff;
+    }
+
+    /* main */
+    #wrapper > #main {
+      background-color: #76d275;
+    }
+    #wrapper > #main > .content {
+      display: flex;
+      border:5px solid #000;
+      box-sizing: border-box;
+    }
+
+    #wrapper > #main > .content > .content__contents {
+      flex:2.5;
+      background-color: #bc5100;
+    }
+    #wrapper > #main > .content > .content__side-banner {
+      flex:1;
+      background-color: #f57f17;
+    }
+    #wrapper > #main > .content > .content__side-menu {
+      /* flex:1;  flex-grow:1 flex-shink:1 flex-basis:0 */
+      width:100px;
+      background-color: #ffb04c;
+    }
+
+    /* footerMenu */
+    #wrapper > #footerMenu > .content {
+      width:100%;
+      height:50px;
+      background-color: #34515e;
+    }
+
+    /* footer */
+    #wrapper > #footer > .content {
+      width:100%;
+      height:150px;
+      background-color: #8eacbb;
+    }
+
+    /* add */
+    #add {
+      position: fixed;
+      background-color: yellow;
+      width: 80px;
+      top: 250px;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="uppermost" class="container">
+      <div class="content">uppermost</div>
+    </div>
+    <header id="header" class="container">
+      <div class="content">header</div>
+    </header>
+    <nav id="gnb" class="container">
+      <div class="content">gnb</div>
+    </nav>
+    <main id="main" class="container">
+      <section class="content">
+        <article class="content__contents">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum alias debitis nesciunt esse nemo temporibus excepturi autem, non facilis accusamus impedit quam ipsa harum fugit? Temporibus quas soluta velit mollitia!</p>
+        </article>
+        <aside class="content__side-banner">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non debitis aliquid earum officiis officia dolor similique a iure, hic aperiam, magnam atque perspiciatis suscipit ipsum consequatur ullam expedita! Aut, odio.</p>
+        </aside>
+        <aside class="content__side-menu">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure sed laudantium, molestiae ullam labore ipsam quaerat praesentium sapiente earum molestias excepturi aliquam sunt natus harum quasi tempore accusamus autem non?</p>
+        </aside>
+      </section>
+    </main>
+    <div id="footerMenu" class="container">
+      <div class="content">footerMenu</div>
+    </div>
+    <footer id="footer" class="container">
+      <div class="content">footer</div>
+    </footer>
+  </div>
+  <div id="add">
+    <ul>
+      <li>광고1</li>
+      <li>광고2</li>
+      <li>광고3</li>
+      <li>광고4</li>
+      <li>광고5</li>
+    </ul>
+  </div>
+</body>
+</html>

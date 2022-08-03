@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      outline: 1px solid red;
+    }
+    .wrap {
+      display:flex;
+      flex-wrap: wrap;
+    }
+    .item {
+      flex:1 1 30%;
+      transition: all .5s;
+    }
+    .item:nth-child(2):hover{
+      z-index: 1;
+      transform: scale(2);
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="item">item1</div>
+    <div class="item">item2fdsfdsadfsa</div>
+    <div class="item">button</div>
+  </div>
+</body>
+</html>

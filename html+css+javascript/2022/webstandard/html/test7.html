@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* *{outline: 1px solid red;} */
+        body {margin: 0;padding: 0;}
+        ul,li {margin: 0;padding: 0;list-style: none;}
+
+        #wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .content {
+            width: 80%;
+        }
+
+        .top-menu {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+            width: 100%;
+        }
+        .top-menu .content {
+            width: 100%;
+            background-color: bisque;
+        }
+        .top-menu .menu {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: center;
+            flex: 2;
+            height: 150px;
+            width: 100%;
+            background-color: azure;
+        }
+        .header .content {
+            background-color: rgb(191, 157, 222);
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            flex: 6;
+            height: 600px;
+            width: 100%;
+            background-color: beige;
+        }
+        .main .content {
+            display: flex;
+            justify-content: end;
+            background-color: rgb(168, 191, 183);
+            
+        }
+        .main .content .article1{
+            flex: 2;
+            background-color: rgb(224, 118, 199);
+        }
+        .main .content .article2{
+            flex: 1;
+            background-color: aquamarine;
+        }
+        .main .content .article3{
+            flex: 1;
+            background-color: blueviolet;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            flex: 2;
+            height: 150px;
+            width: 100%;
+            background-color: rgba(134, 134, 253, 0.249);
+        }
+        .footer .content {
+            background-color: rgba(38, 38, 57, 0.249);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="top-menu">
+            <div class="content">
+                <ul class="menu">
+                    <li>메뉴1</li>
+                    <li>메뉴2</li>
+                    <li>메뉴3</li>
+                    <li>메뉴4</li>
+                    <li>메뉴5</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="content"></div>
+        </div>
+        
+        <div class="main">
+            <div class="content">
+                <div class="article1"></div>
+                <div class="article2"></div>
+                <div class="article3"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="content"></div>
+        </div>
+    </div>
+
+
+    
+</body>
+</html>

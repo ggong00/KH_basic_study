@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input {
+      border: none;
+      outline: none;
+      padding: 10px;
+    }
+    input#value1 {
+      background-color: yellow;
+    }
+    input#value2 {
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <h1>환영합니다!</h1>
+  <p><label>x값</label> <input id='value1' type="text"></p>
+  <p><label>y값</label> <input id='value2' type="text"></p>
+  <p><button id="plusBtn">더하기</button></p>
+  <p><label>결과</label> <input id='result' type="text"></p>
+  <script>
+    
+    const $plusBtn = document.getElementById('plusBtn');
+    const $value1 = document.getElementById('value1');
+    const $value2 = document.getElementById('value2');
+    let $result = document.getElementById('result');
+
+    $plusBtn.addEventListener('click',function(){
+      if(!$value1.value){
+        alert('x값을 입력하세요');
+        $value1.focus();
+        $value1.select();
+        return;
+      }
+      if(!$value2.value){
+        alert('y값을 입력하세요');
+        $value2.focus();
+        $value2.select();
+        return;
+      }
+      const v1 = parseInt($value1.value);
+      const v2 = parseInt($value2.value);
+      $result.value = sum(v1, v2);
+    });
+
+    //함수 정의
+    function sum(x,y){
+
+      return x+y;
+    }
+
+    //함수 호출
+    const result = sum(10,20);
+
+    console.log("두수의합="+result);
+    //alert("두수의합="+result);
+  </script>
+</body>
+</html>

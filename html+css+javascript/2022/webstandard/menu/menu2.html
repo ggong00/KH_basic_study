@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    nav ul {
+      margin:0;
+      padding:0;
+      list-style: none;
+      display:flex;
+      background-color: #333;
+      color:#fff;
+      padding:5px 0;
+    }
+    nav ul li {
+      width:80px;
+      text-align: center;
+      position:relative;
+
+    }
+    nav ul li:before {
+
+    }
+
+    nav ul li:after {
+      content:' ';
+      display:block;
+      width:0px;
+      height:0px;
+      /* background-color:#ccc; */
+      position:absolute;
+      bottom:0;
+      left:5px;
+      border-radius: 50%;
+      transition:all 0.8s
+    }
+
+    nav ul li:hover:after{
+      background-color: #fff;
+      height:2px;
+      width:100%;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li>menu1</li>
+      <li>menu2</li>
+      <li>menu3</li>
+      <li>menu4</li>
+      <li>menu5</li>
+    </ul>
+  </nav>
+</body>
+</html>

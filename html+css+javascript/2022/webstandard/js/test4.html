@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="active">menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+        <li>menu5</li>
+    </ul>
+    <script>
+        const lis = document.querySelectorAll('ul li');
+        for(let i=0; i<lis.length; i++) {
+            lis[i],addEventListener('click',handler);
+        }
+
+        function handler (e) {
+            console.log('클릭' + e.target.textContent);
+            e.target.classList.toggle('active');
+        }
+
+    </script>
+</body>
+</html>

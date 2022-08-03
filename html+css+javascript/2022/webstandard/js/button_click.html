@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            background-color: rgba(195, 188, 188, 0.246);
+            border-width: 1px;
+        }
+
+        button {
+            background-color: azure;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+    <label for="count">카운트</label>
+    <input type="text" id="count" value="0" readonly>
+    <button class="btn__up">증가</button>
+    <button class="btn__down">감소</button>
+
+    <script>
+        const btnUp = document.querySelector('.btn__up');
+        const btnDown = document.querySelector('.btn__down');
+        btnUp.addEventListener('click',handlerIncress);
+        btnDown.addEventListener('click',handlerDecress);
+
+        function handlerIncress(e) {
+            const count = document.getElementById('count');
+            count.value = parseInt(count.value) + 1; 
+        }
+
+        function handlerDecress(e) {
+            const count = document.getElementById('count');
+            count.value = parseInt(count.value) + -1; 
+        }
+    </script>
+
+</body>
+</html>

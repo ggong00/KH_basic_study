@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div { 
+      outline: 1px solid red;
+      /* outline-width: 1px;
+      outline-style: solid;
+      outline-color: red; */
+    }
+
+    .container {
+      display: flex;
+      height:500px;
+      /* flex-direction: row; 주축 */
+      /* flex-wrap:wrap; */
+      flex-flow: row wrap;
+      /* 주축을 중심으로 item 정렬 */
+      justify-content: space-between; 
+      /* 교차축을 중심으로 item 정렬 flex-wrap:nowrap일경우*/
+      /* align-items: flex-end; */
+
+      /* 교차축 중심으로 item정렬, flex-wrap:wrap일경우 */
+      /* align-content: space-evenly; */
+    }
+
+    .container .item {
+      width: 100px; 
+      /* height:50px; */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="item item1">item1</div>
+    <div class="item item2">item2</div>
+    <div class="item item3">item3</div>
+    <div class="item item4">item4</div>
+    <div class="item item5">item5</div>
+  </div>
+</body>
+</html>

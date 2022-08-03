@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* * {outline: 1px solid red;} */
+    body {margin:0;padding:0}
+    ul,li,p { margin:0; padding:0; }
+    ul,li {list-style-type:none;}
+    body {
+      background-color: #111;
+      color:#999;
+    }
+    #container {
+      display: flex;
+      height:100vh;
+      justify-content:center;
+      align-items:center;
+    }
+    #container .product{
+      display:flex;
+      justify-content: center;
+      align-items:center;
+    }
+
+    #container .product .product__item{
+      flex-basis: 150px;
+      flex-shrink: 0; /* 뷰포트가 줄때 item폭 줄임 방지 */
+      position: relative;
+      margin: 0 5px;
+      transition: all .4s;
+      opacity: 0.6;  /*투명도 0~1*/
+    }
+
+    #container .product .product__item:hover{
+      flex-basis: 200px;
+      margin: 0 20px;
+      opacity: 1; 
+    }
+
+    #container .product .product__item .profile {
+      position: relative;
+      font-weight: 900;
+    }
+
+    #container .product .product__item .profile.profile--pink{
+      color:pink;
+    }
+    #container .product .product__item .profile.profile--green{
+      color:#0ade0a;
+    }
+    #container .product .product__item .profile.profile--purple{
+      color:#560756;
+    }
+
+
+    #container .product .product__item .profile img{
+      width:100%;
+    }
+
+    #container .product .product__item .profile .profile__contents{
+      position: absolute;
+      bottom:0; left:0;
+      padding:10px;
+    }
+    #container .product .product__item .profile .profile__contents:before{
+      content: ' ';
+      display:block;
+
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100;Neutral+Density */
+background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+
+       position:absolute;
+      left:0;
+      right:0;
+      bottom: 0;
+      top:0;
+      opacity: 0.3;
+    }
+
+    #container .product .product__item .profile .profile__contents h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+    #container .product .product__item .profile .profile__contents h3 span{
+      display:block;
+      font-size: 0.9em;
+    }
+    #container .product .product__item .profile .profile__contents h3 span:before{
+      content: attr(title);
+      padding-right:5px;
+    }    
+    #container .product .product__item .profile .profile__contents h3 span:after{
+      content: attr(data-unit);
+    }
+    #container .product .product__item .profile .profile__contents p {
+      font-size: 12px;
+      font-weight: bold;
+      color:#fff;
+      max-height:0;
+      max-width:200px;
+      overflow: hidden;
+      /* opacity: 0; */
+      line-height: 1.2;
+      transition: all 1s;
+    }
+    #container .product .product__item:hover .profile .profile__contents p {
+      max-height:150px;
+      /* opacity: 1; */
+      transition-delay: 0.4s;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <ul class="product">
+      <li class="product__item">
+        <div class="profile profile--pink">
+          <img src="https://cdn.pixabay.com/photo/2018/10/06/11/22/coffee-3727673_960_720.jpg" alt="">
+          <div class="profile__contents">
+            <h3>카프치노<span title="가격" data-unit="원">4,000</span></h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni voluptatem labore, atque nobis eos mollitia debitis, adipisci commodi quisquam sed laborum perferendis at perspiciatis unde cupiditate, temporibus officia ullam nemo.</p>
+          </div>
+        </div>
+      </li>
+      <li class="product__item">
+        <div class="profile profile--green">
+          <img src="https://cdn.pixabay.com/photo/2016/11/19/12/54/coffee-1839133_960_720.jpg" alt="">
+          <div class="profile__contents">
+            <h3>아메리카노<span title="가격" data-unit="원">2,000</span></h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni voluptatem labore, atque nobis eos mollitia debitis, adipisci commodi quisquam sed laborum perferendis at perspiciatis unde cupiditate, temporibus officia ullam nemo.</p>
+          </div>
+        </div>
+      </li>
+      <li class="product__item">
+        <div class="profile profile--purple">
+          <img src="https://cdn.pixabay.com/photo/2019/12/02/11/23/drink-4667507_960_720.jpg" alt="">
+          <div class="profile__contents">
+            <h3>바닐라라떼<span title="가격" data-unit="원">3,500</span></h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni voluptatem labore, atque nobis eos mollitia debitis, adipisci commodi quisquam sed laborum perferendis at perspiciatis unde cupiditate, temporibus officia ullam nemo.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

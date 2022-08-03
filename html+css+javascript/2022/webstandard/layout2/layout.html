@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      outline: 1px solid black;
+      margin: 0;
+      padding: 0;
+    }
+
+    #wrapper {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    #wrapper > .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    #wrapper > .container > .content {
+      width: 70vw;
+    }
+
+    #wrapper > #main > .content {
+      display: flex;
+    }
+
+    #wrapper > #main > .content > .content__contents {
+      flex: 3;
+    }
+    #wrapper > #main > .content > .content__side-banner {
+      flex: 1;
+    }
+    #wrapper > #main > .content > .content__side-menu {
+      flex: 1;
+    }
+
+    #wrapper > #uppermost > .content {
+      width: 100%;
+      height: 50px;
+    }
+
+    #wrapper > #header {
+      height: 150px;
+    }
+
+    #wrapper > #gnb {
+      height: 50px;
+    }
+
+    #wrapper > #main {
+      height: 300px;
+    }
+
+    #wrapper > #footerMenu > .content{
+      width: 100%;
+      height: 50px;
+    }
+
+    #wrapper > #footer > .content {
+      width: 100vw;
+      height: 100px;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="uppermost" class="container">
+      <div class="content">uppermost</div>
+    </div>
+
+    <header id="header" class="container">
+      <div class="content">header</div>
+    </header>
+
+    <nav id="gnb" class="container">
+      <div class="content">gnb</div>
+    </nav>
+
+    <main id="main" class="container">
+      <section class="content">
+        <article class="content__contents">Lorem ipsum dolor sit amet.</article>
+        <aside class="content__side-banner">Lorem ipsum dolor sit amet.</aside>
+        <aside class="content__side-menu">Lorem ipsum dolor sit amet.</aside>
+      </section>
+    </main>
+
+    <div id="footerMenu" class="container">
+      <div class="content">footerMenu</div>
+    </div>
+
+    <footer id="footer" class="container">
+      <div class="content">footer</div>
+    </footer>
+
+  </div>
+  
+</body>
+</html>
