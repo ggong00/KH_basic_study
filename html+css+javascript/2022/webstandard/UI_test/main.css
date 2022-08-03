@@ -1,0 +1,158 @@
+@charset "utf-8";
+/* *{box-sizing: border-box;} */
+p{margin: 0;}
+ul,li {margin: 0;padding: 0;list-style: none;}
+a {color: inherit; text-decoration: none;}
+input {margin: 0;}
+/* wrapper */
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 800px;
+    margin: 0 auto;
+}
+
+/* 공통 레이아웃 */
+#wrapper .container {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+}
+
+/* 탑 메뉴 */
+#wrapper .top-menu {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(111, 69, 69, 0.79);
+}
+#wrapper .top-menu .content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 600px;
+    color: white; 
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+#wrapper .top-menu .content span {
+    margin: 0 4px;
+}
+
+/* 헤더 */
+#wrapper .header .content {
+    width: 100%;
+    height: 150px;
+}
+#wrapper .header .content img {
+    height: 100%;
+    width: 100%;
+}
+
+/* 메인 메뉴 */
+#wrapper .main-menu .content {
+    height: 50px;
+    width: 100%;
+    background-color: rgba(111, 69, 69, 0.79);
+}
+#wrapper .main-menu .content .menu-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    height: 100%;
+    font-size: 0.8rem;
+    font-weight: bold;
+} 
+#wrapper .main-menu .content .menu-container li{
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+#wrapper .main-menu .content .menu-container li div {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 8px;
+    transition: all 0.6s;
+}
+#wrapper .main-menu .content .menu-container li:hover div {
+    background-color: black;
+    width: 100%;
+    height: 1.5px;
+}
+
+/* 메인 */
+#wrapper .main .content {
+    display: flex;
+    height: auto;
+    width: 100%;
+}
+#wrapper .main .content .aside {
+    background-color: lightskyblue;
+    width: 20%;
+}
+#wrapper .main .content .article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightcyan;
+    width: 80%;
+    padding: 24px;
+}
+#wrapper .main .content .article h3 {
+    letter-spacing: 0.8rem;
+    margin: 10px;
+}
+#wrapper .main .content .article .join {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 250px;
+    padding: 20px;
+    font-size: 0.8rem;
+    /* line-height: 22px; */
+    background-color: white;
+}
+#wrapper .main .content .article .join .text label {
+    display: block;
+}
+#wrapper .main .content .article .join .text input {
+    width: 100%;
+}
+#wrapper .main .content .article .join .birthday input {
+    width: 100%;
+}
+#wrapper .main .content .article .join .title {
+    font-weight: bold;
+}
+#wrapper .main .content .article .join .title,input {
+    margin: 0.3px;
+}
+#wrapper .main .content .article .join .submit {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    border-style: none;
+    margin-top: 24px;
+}
+
+/* 푸터 */
+#wrapper .footer .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 100%;    
+    background-color: rgba(111, 69, 69, 0.319);
+}
+#wrapper .footer .content p {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;   
+}
