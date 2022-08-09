@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 body,
 ul,
 li,
@@ -36,12 +37,30 @@ button {
 
 :root {
   /* color */
-  --white-color: #fff;
-  --black-color: #000;
+  --font-color-top: #fff;
+  --font-color-gnb: #fff;
+  --font-color-footer: #fff;
+  
+  --bg-color-top: #111;
+  --bg-color-gnb: #222;
+  --bg-color-footer: #ccc;
+  --bg-color-asice: rgb(37, 150, 221);
+  --bg-color-main: rgb(170, 211, 236);
+  --bg-color-join: #fff;
+
+  --btn-color : #fff;
+  --btn-bg-color : green;
+
 
   /* spacing */
 
   /* font-size */
+  font-size: 16px;
+
+  --font-size-small:0.8rem;
+  --font-size-midde:1.2rem;
+  --font-size-big:1.5rem;
+
 }
 
 /* 공통 */
@@ -55,13 +74,12 @@ button {
   display: flex;
   align-items: center;
   height: 50px;
-  background-color: var(--black-color);
+  background-color: var(--bg-color-top);
 }
 #uppermost .content {
   text-align: end;
-  font-size: 0.8rem;
-  color: var(--white-color);
-  font-weight: bold;
+  font-size: var(--font-size-small);
+  color: var(--font-color-top);
 }
 #uppermost .content .interval {
   padding: 0 5px;
@@ -85,20 +103,53 @@ button {
   display: flex;
   align-items: center;
   height: 100%;
-  background-color: var(--black-color);
+  background-color: var(--bg-color-gnb);
 }
 
 #gnb .gnb-menu {
   display: flex;
   width: 100%;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: var(--white-color);
+  font-size: var(--font-size-small);
+  color: var(--font-color-gnb);
 }
 #gnb .gnb-menu .gnb-menu__item {
+  position: relative;
   flex: 1;
   text-align: center;
+  transition: all 1s;
 }
+#gnb .gnb-menu .gnb-menu__item:hover {
+  transition: all 1s;
+}
+#gnb .gnb-menu .gnb-menu__item:hover::before {
+  content: attr(title);
+  display: block;
+  position: absolute;
+  top: -15px;
+  margin-left: 70%;
+  background-color: rgb(246, 142, 160);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-size: 0.8em;
+}
+#gnb .gnb-menu .gnb-menu__item:hover::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  bottom: -13px;
+  right: 0;left: 0;
+  width: 0;
+  margin: 0 auto;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent transparent white transparent;
+
+}
+#gnb .gnb-menu .gnb-menu__item a:hover {
+  text-decoration: underline;
+}
+
 #gnb .gnb-menu .gnb-menu__item .title {
   display: inline-block;
   width: 100%;
@@ -111,15 +162,19 @@ button {
 }
 #main .content .aside {
   flex: 2;
+  background-color: var(--bg-color-asice);
 }
 #main .content .section {
   display: flex;
   justify-content: center;
   flex: 8;
+  background-color: var(--bg-color-main);
 }
 #main .content .section .signup-wrap {
   width: 250px;
   margin: 30px 0;
+  background-color: var(--bg-color-join);
+  padding: 20px;
 }
 #main .content .section .signup-wrap .title {
   text-align: center;
@@ -127,6 +182,9 @@ button {
 }
 #main .content .section .signup-wrap .signup li {
   margin: 0.3px 0;
+}
+#main .content .section .signup-wrap .btn.btn__join {
+  margin-top: 1.2rem;
 }
 
 /* footer */
@@ -136,11 +194,32 @@ button {
   height: 70px;
 }
 #footer .content {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: var(--bg-color-footer);
+  color: var(--font-color-footer);
 }
 
 /* button */
+.btn {
+  color: var(--btn-color);
+  background-color: var(--btn-bg-color);
+}
+
 .btn__join {
-  width: 100%;
   padding: 5px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.box-sizing--bdr {
+  box-sizing: border-box;
+}
+
+.font-weight-700 {
+  font-weight: 700;
 }
