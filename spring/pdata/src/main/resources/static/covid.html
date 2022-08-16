@@ -30,7 +30,7 @@
     var url = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr'; /*URL*/
     var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'gLqQXaEl7S%2F1SKAHgfQg6i%2FhHE0PHZOxx66vvYlVs0EAXuisC6z57aBdJSdkX2BwZ03megcKkrzvP%2Bd5cx4lNg%3D%3D'; /*Service Key*/
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
+    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('1'); /**/
     // queryParams += '&' + encodeURIComponent('resultType') + '=' + encodeURIComponent('resultType=json'); /**/
     // queryParams += '&' + encodeURIComponent('UC_SEQ') + '=' + encodeURIComponent(''); /**/
 
@@ -40,8 +40,6 @@
         if (e.target.readyState == 4) {
 
             const xml2json = new XMLtoJSON();
-
-            console.log(e.target)
 
             //xml포맷 문자열 => js객체
             const jsObj = xml2json.fromStr(e.target.responseText);

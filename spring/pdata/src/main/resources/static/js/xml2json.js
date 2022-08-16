@@ -30,9 +30,11 @@ function XMLtoJSON() {
       var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
       xmlDoc.async = "false";
     }
+    // console.log(xmlDoc)
 
     // gets the JSON string
     var json_str = jsontoStr(setJsonObj(xmlDoc));
+    console.log(json_str)
 
     // sets and returns the JSON object, if "rstr" undefined (not passed), else, returns JSON string
     return (typeof(rstr) == 'undefined') ? JSON.parse(json_str) : json_str;
@@ -40,6 +42,7 @@ function XMLtoJSON() {
 
   // receives XML DOM object, returns converted JSON object
   var setJsonObj = function(xml) {
+    // console.log(xml)
     var js_obj = {};
     if (xml.nodeType === 1) {
       if (xml.attributes.length > 0) {
@@ -68,6 +71,7 @@ function XMLtoJSON() {
         }
       }
     }
+    // console.log(js_obj)
     return js_obj;
   }
 
